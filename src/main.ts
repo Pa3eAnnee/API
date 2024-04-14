@@ -1,10 +1,15 @@
 import express from 'express';
 import * as routes from './routes';
+import path from 'path';
 const app = express();
 const port = 3000;
 
+app
+.use(express.json())
+.use(express.static(path.join(__dirname + '/../java-client')));
+
 Object.keys(routes).forEach(key => {
-    routes[key](app);
+    (routes as any)[key](app);
 });
 
 app.listen(port, () => {
