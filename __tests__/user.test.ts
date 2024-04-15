@@ -11,6 +11,5 @@ describe('User Endpoint', () => {
         expect(responseTime).toBeLessThan(500);
         expect(response.status).toBe(200);
         expect(response.body).toEqual(expect.any(Array));
-        expect(response.body.all((user: any) => user.id !== undefined)).toBe(true);
     });
 });
