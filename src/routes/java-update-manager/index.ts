@@ -1,2 +1,2 @@
-    export * from './downloadVersion';
-    export * from './getLatestVersion';
+export * from './downloadVersion';
+export * from './getLatestVersion';
