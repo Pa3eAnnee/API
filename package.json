@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "node dist/api.js",
-    "test": "npm test"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
