@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "node dist/api.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "nodemon -e ts --exec ts-node src/main.ts"
   },
   "author": "",
   "license": "ISC",
