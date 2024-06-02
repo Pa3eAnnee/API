@@ -2,7 +2,7 @@ import { Express, Request, Response } from 'express';
 import { AppDataSource } from '../../database/database';
 import { User } from '../../database/entities/User';
 import { hash } from 'bcrypt';
-import { createUserValidation } from '../../handlers/validators/user-validators';
+import { createUserValidation } from '../../handlers/validators/user-validator';
 
 
 export const createUser = (app: Express) => {
