@@ -1,7 +1,7 @@
 import { Express, Request, Response } from 'express';
 import { AppDataSource } from '../../database/database';
 import { User } from '../../database/entities/User';
-import { updateUserValidation } from '../../handlers/validators/user-validators';
+import { updateUserValidation } from '../../handlers/validators/user-validator';
 import { hash } from 'bcrypt';
 
 export const updateUser = (app: Express): void => {
