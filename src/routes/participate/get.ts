@@ -22,7 +22,7 @@ export const getParticipates = (app: Express): void => {
         const ParticipateRepo = AppDataSource.getRepository(Participate);
 
         try {
-            const participate = await ParticipateRepo.findOneBy({ id: 1 });
+            const participate = await ParticipateRepo.findOneBy({ id: ParticipateId });
             if (!participate) {
                 res.status(404).send({ error: `Participate with ID ${ParticipateId} not found` });
                 return;
