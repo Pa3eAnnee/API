@@ -67,15 +67,16 @@ export const get${entityCapitalized}s = (app: Express): void => {
     });
 
     app.get('/${entityLowercase}s/:id', async (req: Request, res: Response) => {
-        const ${entityName}Id = req.params.id;
+        const ${entityName}Id = parseInt(req.params.id);
         if (!${entityName}Id || isNaN(Number(${entityName}Id))) {
             res.status(400).send({ error: 'Invalid ${entityName} ID' });
             return;
         }
 
+        const ${entityName}Repo = AppDataSource.getRepository(${entityCapitalized});
+
         try {
-            const ${entityName}Repo = AppDataSource.getRepository(${entityCapitalized});
-            const ${entityLowercase} = await ${entityName}Repo.findOneBy({ id: parseInt(${entityName}Id) });
+            const ${entityLowercase} = await ${entityName}Repo.findOneBy({ id: ${entityName}Id });
             if (!${entityName}) {
                 res.status(404).send({ error: \`${entityCapitalized} with ID \${${entityName}Id} not found\` });
                 return;
