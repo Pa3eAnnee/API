@@ -6,3 +6,7 @@ export * from './address';
 export * from './meeting';
 export * from './room';
 export * from './participate';
+export * from './event';
+export * from './furniture';
+export * from './furniturecategory';
+export * from './rent';
