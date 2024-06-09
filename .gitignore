@@ -16,6 +16,7 @@ java-client/*
 /.idea/API.iml
 /.idea/vcs.xml
 /.idea/modules.xml
+/node_modules/
 /node_modules/.bin/acorn
 /node_modules/.bin/acorn.cmd
 /node_modules/.bin/browserslist

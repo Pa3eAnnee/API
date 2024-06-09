@@ -17,6 +17,7 @@ export * from './subscription';
 export * from './transaction';
 export * from './agenda';
 export * from './attend';
+export * from './debate';
 
 
 
