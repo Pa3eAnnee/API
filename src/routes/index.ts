@@ -15,6 +15,21 @@ export * from './membershipcard';
 export * from './paymentmethod';
 export * from './subscription';
 export * from './transaction';
+export * from './agenda';
+export * from './attend';
+export * from './debate';
+export * from './generalassembly';
+export * from './include';
+export * from './resume';
+export * from './topics';
+export * from './vote';
+export * from './votetable';
+export * from './expanse';
+export * from './expansecategory';
+export * from './write';
+export * from './voteoption';
+
+
 
 
 
