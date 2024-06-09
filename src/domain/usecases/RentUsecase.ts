@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
-import { Rent } from "../database/entities/Rent";
-import { CreateRentRequest, UpdateRentRequest, createRentValidation, updateRentValidation } from '../handlers/validators/rent-validator';
+import { Rent } from "../../database/entities/Rent";
+import { CreateRentRequest, UpdateRentRequest, createRentValidation, updateRentValidation } from '../../handlers/validators/rent-validator';
 
 export class RentUsecase {
     constructor(private readonly db: DataSource) { }

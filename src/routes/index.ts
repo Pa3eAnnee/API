@@ -10,3 +10,11 @@ export * from './event';
 export * from './furniture';
 export * from './furniturecategory';
 export * from './rent';
+export * from './donation';
+export * from './membershipcard';
+export * from './paymentmethod';
+export * from './subscription';
+export * from './transaction';
+
+
+

@@ -77,11 +77,11 @@ export const get${entityCapitalized}s = (app: Express): void => {
 
         try {
             const ${entityLowercase} = await ${entityName}Repo.findOneBy({ id: ${entityName}Id });
-            if (!${entityName}) {
+            if (!${entityLowercase}) {
                 res.status(404).send({ error: \`${entityCapitalized} with ID \${${entityName}Id} not found\` });
                 return;
             }
-            res.status(200).send(${entityName});
+            res.status(200).send(${entityLowercase});
         } catch (error) {
             console.error(error);
             res.status(500).send({ error: 'Internal error' });
