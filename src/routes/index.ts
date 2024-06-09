@@ -21,6 +21,7 @@ export * from './debate';
 export * from './generalassembly';
 export * from './include';
 export * from './resume';
+export * from './topics';
 
 
 
