@@ -35,7 +35,7 @@ export class DebateUsecase {
 
     async updateDebate(id: number, debateData: UpdateDebateRequest): Promise<Debate | null> {
         // Validate debateData against the schema
-        const { error } = updateDebateValidation.validate({ id, ...debateData });
+        const { error } = updateDebateValidation.validate({ ...debateData });
         if (error) {
             throw new Error(`Invalid UpdateDebateRequest data: ${error.message}`);
         }
