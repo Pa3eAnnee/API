@@ -1,4 +1,4 @@
-node_modules
+S node_modules
 
 .pnp.*
 .yarn/*
@@ -12,3 +12,7 @@ dist
 
 java-client/*
 !java-client/.*
+/.idea/.gitignore
+/.idea/API.iml
+/.idea/vcs.xml
+/.idea/modules.xml
