@@ -1,9 +1,9 @@
 import { DataSource } from "typeorm";
-import { GeneralAssembly } from "../database/entities/GeneralAssembly";
+import { GeneralAssembly } from "../../database/entities/GeneralAssembly";
 import {
     CreateGeneralAssemblyRequest,
     createGeneralAssemblyValidation, UpdateGeneralAssemblyRequest, updateGeneralAssemblyValidation
-} from "../handlers/validators/generalassembly-validator";
+} from "../../handlers/validators/generalassembly-validator";
 
 export class GeneralAssemblyUsecase {
     constructor(private readonly db: DataSource) { }

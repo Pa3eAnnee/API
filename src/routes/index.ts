@@ -20,6 +20,7 @@ export * from './attend';
 export * from './debate';
 export * from './generalassembly';
 export * from './include';
+export * from './resume';
 
 
 
