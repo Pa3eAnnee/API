@@ -26,6 +26,8 @@ export * from './vote';
 export * from './votetable';
 export * from './expanse';
 export * from './expansecategory';
+export * from './write';
+export * from './voteoption';
 
 
 
