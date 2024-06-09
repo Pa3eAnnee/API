@@ -23,6 +23,7 @@ export * from './include';
 export * from './resume';
 export * from './topics';
 export * from './vote';
+export * from './votetable';
 
 
 
