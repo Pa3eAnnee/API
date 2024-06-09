@@ -15,7 +15,7 @@ export class Transaction {
     @Column()
     method_id: number
 
-    @Column()
+    @Column("decimal", { precision: 10, scale: 2 })
     amount: number
 
     @Column()

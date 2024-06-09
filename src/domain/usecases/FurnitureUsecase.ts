@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
-import { Furniture } from "../database/entities/Furniture";
-import { CreateFurnitureRequest, UpdateFurnitureRequest, createFurnitureValidation, updateFurnitureValidation } from '../handlers/validators/furniture-validator';
+import { Furniture } from "../../database/entities/Furniture";
+import { CreateFurnitureRequest, UpdateFurnitureRequest, createFurnitureValidation, updateFurnitureValidation } from '../../handlers/validators/furniture-validator';
 
 export class FurnitureUsecase {
     constructor(private readonly db: DataSource) { }

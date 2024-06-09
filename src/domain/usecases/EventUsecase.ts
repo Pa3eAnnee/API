@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
-import { Event } from "../database/entities/Event";
-import { CreateEventRequest, UpdateEventRequest, createEventValidation, updateEventValidation } from '../handlers/validators/event-validator';
+import { Event } from "../../database/entities/Event";
+import { CreateEventRequest, UpdateEventRequest, createEventValidation, updateEventValidation } from '../../handlers/validators/event-validator';
 
 export class EventUsecase {
     constructor(private readonly db: DataSource) { }
