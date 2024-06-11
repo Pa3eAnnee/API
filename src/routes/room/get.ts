@@ -11,7 +11,7 @@ export const getRooms = (app: Express): void => {
 
 	app.get("/rooms/:id", async (req: Request, res: Response) => {
 		const roomId = Number.parseInt(req.params.id);
-		if (!roomId || isNaN(Number(roomId))) {
+		if (!roomId || Number.isNaN(Number(roomId))) {
 			res.status(400).send({ error: "Invalid room ID" });
 			return;
 		}

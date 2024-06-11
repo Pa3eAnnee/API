@@ -7,7 +7,7 @@ export const deleteTopics = (app: Express): void => {
 	app.delete("/topics/:id", async (req: Request, res: Response) => {
 		const topicsId = Number.parseInt(req.params.id);
 
-		if (isNaN(topicsId)) {
+		if (Number.isNaN(topicsId)) {
 			res.status(400).send({ error: "Invalid topics ID" });
 			return;
 		}

@@ -11,7 +11,7 @@ export const getRents = (app: Express): void => {
 
 	app.get("/rents/:id", async (req: Request, res: Response) => {
 		const rentId = Number.parseInt(req.params.id);
-		if (!rentId || isNaN(Number(rentId))) {
+		if (!rentId || Number.isNaN(Number(rentId))) {
 			res.status(400).send({ error: "Invalid rent ID" });
 			return;
 		}

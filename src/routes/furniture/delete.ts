@@ -7,7 +7,7 @@ export const deleteFurniture = (app: Express): void => {
 	app.delete("/furnitures/:id", async (req: Request, res: Response) => {
 		const furnitureId = Number.parseInt(req.params.id);
 
-		if (isNaN(furnitureId)) {
+		if (Number.isNaN(furnitureId)) {
 			res.status(400).send({ error: "Invalid furniture ID" });
 			return;
 		}
@@ -24,11 +24,9 @@ export const deleteFurniture = (app: Express): void => {
 			}
 
 			await furnitureRepo.delete(furnitureId);
-			res
-				.status(200)
-				.send({
-					message: `Furniture with ID ${furnitureId} deleted successfully`,
-				});
+			res.status(200).send({
+				message: `Furniture with ID ${furnitureId} deleted successfully`,
+			});
 		} catch (error) {
 			console.error(error);
 			res.status(500).send({ error: "Internal error" });

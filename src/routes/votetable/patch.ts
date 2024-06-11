@@ -29,11 +29,9 @@ export const updateVoteTable = (app: Express): void => {
 				id: voteTableRequest.id,
 			});
 			if (!voteTable) {
-				res
-					.status(404)
-					.send({
-						error: `VoteTable with ID ${voteTableRequest.id} not found`,
-					});
+				res.status(404).send({
+					error: `VoteTable with ID ${voteTableRequest.id} not found`,
+				});
 				return;
 			}
 

@@ -29,11 +29,9 @@ export const updateTransaction = (app: Express): void => {
 				id: transactionRequest.id,
 			});
 			if (!transaction) {
-				res
-					.status(404)
-					.send({
-						error: `Transaction with ID ${transactionRequest.id} not found`,
-					});
+				res.status(404).send({
+					error: `Transaction with ID ${transactionRequest.id} not found`,
+				});
 				return;
 			}
 

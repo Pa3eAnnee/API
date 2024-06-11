@@ -7,7 +7,7 @@ export const deleteWrite = (app: Express): void => {
 	app.delete("/writes/:id", async (req: Request, res: Response) => {
 		const writeId = Number.parseInt(req.params.id);
 
-		if (isNaN(writeId)) {
+		if (Number.isNaN(writeId)) {
 			res.status(400).send({ error: "Invalid write ID" });
 			return;
 		}

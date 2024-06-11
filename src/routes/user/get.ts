@@ -11,7 +11,7 @@ export const getUsers = (app: Express): void => {
 
 	app.get("/users/:id", async (req: Request, res: Response) => {
 		const userId = req.params.id;
-		if (!userId || isNaN(Number(userId))) {
+		if (!userId || Number.isNaN(Number(userId))) {
 			res.status(400).send({ error: "Invalid user ID" });
 			return;
 		}

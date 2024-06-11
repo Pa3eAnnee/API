@@ -11,7 +11,7 @@ export const getVoteoptions = (app: Express): void => {
 
 	app.get("/voteoptions/:id", async (req: Request, res: Response) => {
 		const voteoptionId = Number.parseInt(req.params.id);
-		if (!voteoptionId || isNaN(Number(voteoptionId))) {
+		if (!voteoptionId || Number.isNaN(Number(voteoptionId))) {
 			res.status(400).send({ error: "Invalid voteoption ID" });
 			return;
 		}

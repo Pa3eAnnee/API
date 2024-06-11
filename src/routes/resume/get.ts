@@ -11,7 +11,7 @@ export const getResumes = (app: Express): void => {
 
 	app.get("/resumes/:id", async (req: Request, res: Response) => {
 		const resumeId = Number.parseInt(req.params.id);
-		if (!resumeId || isNaN(Number(resumeId))) {
+		if (!resumeId || Number.isNaN(Number(resumeId))) {
 			res.status(400).send({ error: "Invalid resume ID" });
 			return;
 		}

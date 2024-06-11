@@ -11,7 +11,7 @@ export const getAttends = (app: Express): void => {
 
 	app.get("/attends/:id", async (req: Request, res: Response) => {
 		const attendId = Number.parseInt(req.params.id);
-		if (!attendId || isNaN(Number(attendId))) {
+		if (!attendId || Number.isNaN(Number(attendId))) {
 			res.status(400).send({ error: "Invalid attend ID" });
 			return;
 		}

@@ -11,7 +11,7 @@ export const getMeetings = (app: Express): void => {
 
 	app.get("/meetings/:id", async (req: Request, res: Response) => {
 		const MeetingId = Number.parseInt(req.params.id);
-		if (!MeetingId || isNaN(Number(MeetingId))) {
+		if (!MeetingId || Number.isNaN(Number(MeetingId))) {
 			res.status(400).send({ error: "Invalid Meeting ID" });
 			return;
 		}
@@ -19,13 +19,13 @@ export const getMeetings = (app: Express): void => {
 		try {
 			const MeetingRepo = AppDataSource.getRepository(Meeting);
 			const meeting = await MeetingRepo.findOneBy({ id: MeetingId });
-			if (!Meeting) {
+			if (!meeting) {
 				res
 					.status(404)
 					.send({ error: `Meeting with ID ${MeetingId} not found` });
 				return;
 			}
-			res.status(200).send(Meeting);
+			res.status(200).send(meeting);
 		} catch (error) {
 			console.error(error);
 			res.status(500).send({ error: "Internal error" });

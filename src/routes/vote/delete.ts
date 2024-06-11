@@ -7,7 +7,7 @@ export const deleteVote = (app: Express): void => {
 	app.delete("/votes/:id", async (req: Request, res: Response) => {
 		const voteId = Number.parseInt(req.params.id);
 
-		if (isNaN(voteId)) {
+		if (Number.isNaN(voteId)) {
 			res.status(400).send({ error: "Invalid vote ID" });
 			return;
 		}

@@ -7,7 +7,7 @@ export const deleteDonation = (app: Express): void => {
 	app.delete("/donations/:id", async (req: Request, res: Response) => {
 		const donationId = Number.parseInt(req.params.id);
 
-		if (isNaN(donationId)) {
+		if (Number.isNaN(donationId)) {
 			res.status(400).send({ error: "Invalid donation ID" });
 			return;
 		}
@@ -24,11 +24,9 @@ export const deleteDonation = (app: Express): void => {
 			}
 
 			await donationRepo.delete(donationId);
-			res
-				.status(200)
-				.send({
-					message: `Donation with ID ${donationId} deleted successfully`,
-				});
+			res.status(200).send({
+				message: `Donation with ID ${donationId} deleted successfully`,
+			});
 		} catch (error) {
 			console.error(error);
 			res.status(500).send({ error: "Internal error" });

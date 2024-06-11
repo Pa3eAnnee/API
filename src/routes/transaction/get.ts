@@ -11,7 +11,7 @@ export const getTransactions = (app: Express): void => {
 
 	app.get("/transactions/:id", async (req: Request, res: Response) => {
 		const transactionId = Number.parseInt(req.params.id);
-		if (!transactionId || isNaN(Number(transactionId))) {
+		if (!transactionId || Number.isNaN(Number(transactionId))) {
 			res.status(400).send({ error: "Invalid transaction ID" });
 			return;
 		}

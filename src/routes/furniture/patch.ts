@@ -29,11 +29,9 @@ export const updateFurniture = (app: Express): void => {
 				id: furnitureRequest.id,
 			});
 			if (!furniture) {
-				res
-					.status(404)
-					.send({
-						error: `Furniture with ID ${furnitureRequest.id} not found`,
-					});
+				res.status(404).send({
+					error: `Furniture with ID ${furnitureRequest.id} not found`,
+				});
 				return;
 			}
 

@@ -7,7 +7,9 @@
 		"build": "webpack",
 		"typeorm": "typeorm-ts-node-commonjs",
 		"start": "node dist/api.js",
-		"start:dev": "nodemon -e ts --exec ts-node src/main.ts"
+		"start:dev": "nodemon -e ts --exec ts-node src/main.ts",
+		"lint": "biome check --write .",
+		"lint:check": "biome ci ."
 	},
 	"author": "",
 	"license": "ISC",

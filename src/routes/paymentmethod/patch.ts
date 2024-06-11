@@ -29,11 +29,9 @@ export const updatePaymentMethod = (app: Express): void => {
 				id: paymentMethodRequest.id,
 			});
 			if (!paymentMethod) {
-				res
-					.status(404)
-					.send({
-						error: `PaymentMethod with ID ${paymentMethodRequest.id} not found`,
-					});
+				res.status(404).send({
+					error: `PaymentMethod with ID ${paymentMethodRequest.id} not found`,
+				});
 				return;
 			}
 

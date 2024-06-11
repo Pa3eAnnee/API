@@ -7,7 +7,7 @@ export const deleteVoteoption = (app: Express): void => {
 	app.delete("/voteoptions/:id", async (req: Request, res: Response) => {
 		const voteoptionId = Number.parseInt(req.params.id);
 
-		if (isNaN(voteoptionId)) {
+		if (Number.isNaN(voteoptionId)) {
 			res.status(400).send({ error: "Invalid voteoption ID" });
 			return;
 		}
@@ -24,11 +24,9 @@ export const deleteVoteoption = (app: Express): void => {
 			}
 
 			await voteoptionRepo.delete(voteoptionId);
-			res
-				.status(200)
-				.send({
-					message: `Voteoption with ID ${voteoptionId} deleted successfully`,
-				});
+			res.status(200).send({
+				message: `Voteoption with ID ${voteoptionId} deleted successfully`,
+			});
 		} catch (error) {
 			console.error(error);
 			res.status(500).send({ error: "Internal error" });

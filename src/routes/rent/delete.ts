@@ -7,7 +7,7 @@ export const deleteRent = (app: Express): void => {
 	app.delete("/rents/:id", async (req: Request, res: Response) => {
 		const rentId = Number.parseInt(req.params.id);
 
-		if (isNaN(rentId)) {
+		if (Number.isNaN(rentId)) {
 			res.status(400).send({ error: "Invalid rent ID" });
 			return;
 		}

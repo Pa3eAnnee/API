@@ -7,7 +7,7 @@ export const deleteParticipate = (app: Express): void => {
 	app.delete("/participates/:id", async (req: Request, res: Response) => {
 		const ParticipateId = Number.parseInt(req.params.id);
 
-		if (isNaN(ParticipateId)) {
+		if (Number.isNaN(ParticipateId)) {
 			res.status(400).send({ error: "Invalid Participate ID" });
 			return;
 		}
@@ -26,11 +26,9 @@ export const deleteParticipate = (app: Express): void => {
 			}
 
 			await ParticipateRepo.delete(ParticipateId);
-			res
-				.status(200)
-				.send({
-					message: `Participate with ID ${ParticipateId} deleted successfully`,
-				});
+			res.status(200).send({
+				message: `Participate with ID ${ParticipateId} deleted successfully`,
+			});
 		} catch (error) {
 			console.error(error);
 			res.status(500).send({ error: "Internal error" });

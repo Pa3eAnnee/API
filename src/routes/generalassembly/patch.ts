@@ -29,11 +29,9 @@ export const updateGeneralAssembly = (app: Express): void => {
 				id: generalAssemblyRequest.id,
 			});
 			if (!generalAssembly) {
-				res
-					.status(404)
-					.send({
-						error: `GeneralAssembly with ID ${generalAssemblyRequest.id} not found`,
-					});
+				res.status(404).send({
+					error: `GeneralAssembly with ID ${generalAssemblyRequest.id} not found`,
+				});
 				return;
 			}
 

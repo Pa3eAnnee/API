@@ -7,7 +7,7 @@ export const deleteSubscription = (app: Express): void => {
 	app.delete("/subscriptions/:id", async (req: Request, res: Response) => {
 		const subscriptionId = Number.parseInt(req.params.id);
 
-		if (isNaN(subscriptionId)) {
+		if (Number.isNaN(subscriptionId)) {
 			res.status(400).send({ error: "Invalid subscription ID" });
 			return;
 		}
@@ -26,11 +26,9 @@ export const deleteSubscription = (app: Express): void => {
 			}
 
 			await subscriptionRepo.delete(subscriptionId);
-			res
-				.status(200)
-				.send({
-					message: `Subscription with ID ${subscriptionId} deleted successfully`,
-				});
+			res.status(200).send({
+				message: `Subscription with ID ${subscriptionId} deleted successfully`,
+			});
 		} catch (error) {
 			console.error(error);
 			res.status(500).send({ error: "Internal error" });

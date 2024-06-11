@@ -29,11 +29,9 @@ export const updateVoteoption = (app: Express): void => {
 				id: voteoptionRequest.id,
 			});
 			if (!voteoption) {
-				res
-					.status(404)
-					.send({
-						error: `Voteoption with ID ${voteoptionRequest.id} not found`,
-					});
+				res.status(404).send({
+					error: `Voteoption with ID ${voteoptionRequest.id} not found`,
+				});
 				return;
 			}
 

@@ -6,7 +6,7 @@ export const deleteUser = (app: Express): void => {
 	app.delete("/users/:id", async (req: Request, res: Response) => {
 		const userId = Number.parseInt(req.params.id);
 
-		if (isNaN(userId)) {
+		if (Number.isNaN(userId)) {
 			res.status(400).send({ error: "Invalid user ID" });
 			return;
 		}

@@ -29,11 +29,9 @@ export const updateSubscription = (app: Express): void => {
 				id: subscriptionRequest.id,
 			});
 			if (!subscription) {
-				res
-					.status(404)
-					.send({
-						error: `Subscription with ID ${subscriptionRequest.id} not found`,
-					});
+				res.status(404).send({
+					error: `Subscription with ID ${subscriptionRequest.id} not found`,
+				});
 				return;
 			}
 

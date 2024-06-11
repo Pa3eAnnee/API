@@ -7,7 +7,7 @@ export const deleteEvent = (app: Express): void => {
 	app.delete("/events/:id", async (req: Request, res: Response) => {
 		const eventId = Number.parseInt(req.params.id);
 
-		if (isNaN(eventId)) {
+		if (Number.isNaN(eventId)) {
 			res.status(400).send({ error: "Invalid event ID" });
 			return;
 		}

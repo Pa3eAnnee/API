@@ -1,5 +1,5 @@
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 const entityName = process.argv[2];
 
@@ -206,6 +206,7 @@ export class ${entityCapitalized}Usecase {
 `;
 
 // Write the route files
+// biome-ignore lint/complexity/noForEach: <explanation>
 Object.entries(routeTemplates).forEach(([fileName, content]) => {
 	const filePath = path.join(routeDir, fileName);
 	fs.writeFileSync(filePath, content.trim());

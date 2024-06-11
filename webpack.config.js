@@ -1,8 +1,8 @@
-const path = require("path");
+const path = require("node:path");
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
-	entry: `./src/main.ts`,
+	entry: "./src/main.ts",
 	target: "node",
 	externals: [
 		/^[a-z\-0-9]+$/, // Ignore node_modules folder

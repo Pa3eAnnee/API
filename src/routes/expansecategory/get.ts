@@ -11,7 +11,7 @@ export const getExpanseCategorys = (app: Express): void => {
 
 	app.get("/expansecategories/:id", async (req: Request, res: Response) => {
 		const expanseCategoryId = Number.parseInt(req.params.id);
-		if (!expanseCategoryId || isNaN(Number(expanseCategoryId))) {
+		if (!expanseCategoryId || Number.isNaN(Number(expanseCategoryId))) {
 			res.status(400).send({ error: "Invalid expanseCategory ID" });
 			return;
 		}
@@ -23,11 +23,9 @@ export const getExpanseCategorys = (app: Express): void => {
 				id: expanseCategoryId,
 			});
 			if (!expansecategory) {
-				res
-					.status(404)
-					.send({
-						error: `ExpanseCategory with ID ${expanseCategoryId} not found`,
-					});
+				res.status(404).send({
+					error: `ExpanseCategory with ID ${expanseCategoryId} not found`,
+				});
 				return;
 			}
 			res.status(200).send(expansecategory);

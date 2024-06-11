@@ -7,7 +7,7 @@ export const deleteAgenda = (app: Express): void => {
 	app.delete("/agendas/:id", async (req: Request, res: Response) => {
 		const agendaId = Number.parseInt(req.params.id);
 
-		if (isNaN(agendaId)) {
+		if (Number.isNaN(agendaId)) {
 			res.status(400).send({ error: "Invalid agenda ID" });
 			return;
 		}

@@ -11,7 +11,7 @@ export const getWrites = (app: Express): void => {
 
 	app.get("/writes/:id", async (req: Request, res: Response) => {
 		const writeId = Number.parseInt(req.params.id);
-		if (!writeId || isNaN(Number(writeId))) {
+		if (!writeId || Number.isNaN(Number(writeId))) {
 			res.status(400).send({ error: "Invalid write ID" });
 			return;
 		}

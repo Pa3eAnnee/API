@@ -11,7 +11,7 @@ export const getPaymentMethods = (app: Express): void => {
 
 	app.get("/paymentmethods/:id", async (req: Request, res: Response) => {
 		const paymentMethodId = Number.parseInt(req.params.id);
-		if (!paymentMethodId || isNaN(Number(paymentMethodId))) {
+		if (!paymentMethodId || Number.isNaN(Number(paymentMethodId))) {
 			res.status(400).send({ error: "Invalid paymentMethod ID" });
 			return;
 		}
@@ -23,11 +23,9 @@ export const getPaymentMethods = (app: Express): void => {
 				id: paymentMethodId,
 			});
 			if (!paymentmethod) {
-				res
-					.status(404)
-					.send({
-						error: `PaymentMethod with ID ${paymentMethodId} not found`,
-					});
+				res.status(404).send({
+					error: `PaymentMethod with ID ${paymentMethodId} not found`,
+				});
 				return;
 			}
 			res.status(200).send(paymentmethod);

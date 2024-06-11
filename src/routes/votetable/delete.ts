@@ -7,7 +7,7 @@ export const deleteVoteTable = (app: Express): void => {
 	app.delete("/votetables/:id", async (req: Request, res: Response) => {
 		const voteTableId = Number.parseInt(req.params.id);
 
-		if (isNaN(voteTableId)) {
+		if (Number.isNaN(voteTableId)) {
 			res.status(400).send({ error: "Invalid voteTable ID" });
 			return;
 		}
@@ -24,11 +24,9 @@ export const deleteVoteTable = (app: Express): void => {
 			}
 
 			await voteTableRepo.delete(voteTableId);
-			res
-				.status(200)
-				.send({
-					message: `VoteTable with ID ${voteTableId} deleted successfully`,
-				});
+			res.status(200).send({
+				message: `VoteTable with ID ${voteTableId} deleted successfully`,
+			});
 		} catch (error) {
 			console.error(error);
 			res.status(500).send({ error: "Internal error" });

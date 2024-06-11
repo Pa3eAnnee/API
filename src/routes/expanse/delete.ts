@@ -7,7 +7,7 @@ export const deleteExpanse = (app: Express): void => {
 	app.delete("/expanses/:id", async (req: Request, res: Response) => {
 		const expanseId = Number.parseInt(req.params.id);
 
-		if (isNaN(expanseId)) {
+		if (Number.isNaN(expanseId)) {
 			res.status(400).send({ error: "Invalid expanse ID" });
 			return;
 		}

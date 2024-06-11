@@ -7,7 +7,7 @@ export const deleteResume = (app: Express): void => {
 	app.delete("/resumes/:id", async (req: Request, res: Response) => {
 		const resumeId = Number.parseInt(req.params.id);
 
-		if (isNaN(resumeId)) {
+		if (Number.isNaN(resumeId)) {
 			res.status(400).send({ error: "Invalid resume ID" });
 			return;
 		}

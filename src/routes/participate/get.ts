@@ -12,7 +12,7 @@ export const getParticipates = (app: Express): void => {
 	app.get("/participates/:id", async (req: Request, res: Response) => {
 		const ParticipateId = Number.parseInt(req.params.id);
 
-		if (isNaN(ParticipateId)) {
+		if (Number.isNaN(ParticipateId)) {
 			res.status(400).send({ error: "Invalid Participate ID" });
 			return;
 		}

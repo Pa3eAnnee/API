@@ -30,11 +30,9 @@ export const updateFurnitureCategory = (app: Express): void => {
 				id: furnitureCategoryRequest.id,
 			});
 			if (!furnitureCategory) {
-				res
-					.status(404)
-					.send({
-						error: `FurnitureCategory with ID ${furnitureCategoryRequest.id} not found`,
-					});
+				res.status(404).send({
+					error: `FurnitureCategory with ID ${furnitureCategoryRequest.id} not found`,
+				});
 				return;
 			}
 

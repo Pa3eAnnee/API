@@ -7,7 +7,7 @@ export const deleteTransaction = (app: Express): void => {
 	app.delete("/transactions/:id", async (req: Request, res: Response) => {
 		const transactionId = Number.parseInt(req.params.id);
 
-		if (isNaN(transactionId)) {
+		if (Number.isNaN(transactionId)) {
 			res.status(400).send({ error: "Invalid transaction ID" });
 			return;
 		}
@@ -26,11 +26,9 @@ export const deleteTransaction = (app: Express): void => {
 			}
 
 			await transactionRepo.delete(transactionId);
-			res
-				.status(200)
-				.send({
-					message: `Transaction with ID ${transactionId} deleted successfully`,
-				});
+			res.status(200).send({
+				message: `Transaction with ID ${transactionId} deleted successfully`,
+			});
 		} catch (error) {
 			console.error(error);
 			res.status(500).send({ error: "Internal error" });

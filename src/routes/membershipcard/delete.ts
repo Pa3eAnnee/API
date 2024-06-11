@@ -7,7 +7,7 @@ export const deleteMembershipCard = (app: Express): void => {
 	app.delete("/membershipcards/:id", async (req: Request, res: Response) => {
 		const membershipCardId = Number.parseInt(req.params.id);
 
-		if (isNaN(membershipCardId)) {
+		if (Number.isNaN(membershipCardId)) {
 			res.status(400).send({ error: "Invalid membershipCard ID" });
 			return;
 		}
@@ -19,20 +19,16 @@ export const deleteMembershipCard = (app: Express): void => {
 				id: membershipCardId,
 			});
 			if (!membershipCard) {
-				res
-					.status(404)
-					.send({
-						error: `MembershipCard with ID ${membershipCardId} not found`,
-					});
+				res.status(404).send({
+					error: `MembershipCard with ID ${membershipCardId} not found`,
+				});
 				return;
 			}
 
 			await membershipCardRepo.delete(membershipCardId);
-			res
-				.status(200)
-				.send({
-					message: `MembershipCard with ID ${membershipCardId} deleted successfully`,
-				});
+			res.status(200).send({
+				message: `MembershipCard with ID ${membershipCardId} deleted successfully`,
+			});
 		} catch (error) {
 			console.error(error);
 			res.status(500).send({ error: "Internal error" });

@@ -11,7 +11,7 @@ export const getTopicss = (app: Express): void => {
 
 	app.get("/topics/:id", async (req: Request, res: Response) => {
 		const topicsId = Number.parseInt(req.params.id);
-		if (!topicsId || isNaN(Number(topicsId))) {
+		if (!topicsId || Number.isNaN(Number(topicsId))) {
 			res.status(400).send({ error: "Invalid topics ID" });
 			return;
 		}

@@ -7,7 +7,7 @@ export const deleteAttend = (app: Express): void => {
 	app.delete("/attends/:id", async (req: Request, res: Response) => {
 		const attendId = Number.parseInt(req.params.id);
 
-		if (isNaN(attendId)) {
+		if (Number.isNaN(attendId)) {
 			res.status(400).send({ error: "Invalid attend ID" });
 			return;
 		}

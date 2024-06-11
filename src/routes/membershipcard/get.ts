@@ -11,7 +11,7 @@ export const getMembershipCards = (app: Express): void => {
 
 	app.get("/membershipcards/:id", async (req: Request, res: Response) => {
 		const membershipCardId = Number.parseInt(req.params.id);
-		if (!membershipCardId || isNaN(Number(membershipCardId))) {
+		if (!membershipCardId || Number.isNaN(Number(membershipCardId))) {
 			res.status(400).send({ error: "Invalid membershipCard ID" });
 			return;
 		}
@@ -23,11 +23,9 @@ export const getMembershipCards = (app: Express): void => {
 				id: membershipCardId,
 			});
 			if (!membershipcard) {
-				res
-					.status(404)
-					.send({
-						error: `MembershipCard with ID ${membershipCardId} not found`,
-					});
+				res.status(404).send({
+					error: `MembershipCard with ID ${membershipCardId} not found`,
+				});
 				return;
 			}
 			res.status(200).send(membershipcard);

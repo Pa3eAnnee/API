@@ -11,7 +11,7 @@ export const getGeneralAssemblys = (app: Express): void => {
 
 	app.get("/generalassemblies/:id", async (req: Request, res: Response) => {
 		const generalAssemblyId = Number.parseInt(req.params.id);
-		if (!generalAssemblyId || isNaN(Number(generalAssemblyId))) {
+		if (!generalAssemblyId || Number.isNaN(Number(generalAssemblyId))) {
 			res.status(400).send({ error: "Invalid generalAssembly ID" });
 			return;
 		}
@@ -23,11 +23,9 @@ export const getGeneralAssemblys = (app: Express): void => {
 				id: generalAssemblyId,
 			});
 			if (!generalassembly) {
-				res
-					.status(404)
-					.send({
-						error: `GeneralAssembly with ID ${generalAssemblyId} not found`,
-					});
+				res.status(404).send({
+					error: `GeneralAssembly with ID ${generalAssemblyId} not found`,
+				});
 				return;
 			}
 			res.status(200).send(generalassembly);

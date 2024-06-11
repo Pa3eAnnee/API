@@ -7,7 +7,7 @@ export const deleteInclude = (app: Express): void => {
 	app.delete("/includes/:id", async (req: Request, res: Response) => {
 		const includeId = Number.parseInt(req.params.id);
 
-		if (isNaN(includeId)) {
+		if (Number.isNaN(includeId)) {
 			res.status(400).send({ error: "Invalid include ID" });
 			return;
 		}

@@ -29,11 +29,9 @@ export const updateExpanseCategory = (app: Express): void => {
 				id: expanseCategoryRequest.id,
 			});
 			if (!expanseCategory) {
-				res
-					.status(404)
-					.send({
-						error: `ExpanseCategory with ID ${expanseCategoryRequest.id} not found`,
-					});
+				res.status(404).send({
+					error: `ExpanseCategory with ID ${expanseCategoryRequest.id} not found`,
+				});
 				return;
 			}
 

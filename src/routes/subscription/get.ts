@@ -11,7 +11,7 @@ export const getSubscriptions = (app: Express): void => {
 
 	app.get("/subscriptions/:id", async (req: Request, res: Response) => {
 		const subscriptionId = Number.parseInt(req.params.id);
-		if (!subscriptionId || isNaN(Number(subscriptionId))) {
+		if (!subscriptionId || Number.isNaN(Number(subscriptionId))) {
 			res.status(400).send({ error: "Invalid subscription ID" });
 			return;
 		}

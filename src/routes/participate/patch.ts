@@ -29,11 +29,9 @@ export const updateParticipate = (app: Express): void => {
 				id: ParticipateRequest.id,
 			});
 			if (!Participate) {
-				res
-					.status(404)
-					.send({
-						error: `Participate with ID ${ParticipateRequest.id} not found`,
-					});
+				res.status(404).send({
+					error: `Participate with ID ${ParticipateRequest.id} not found`,
+				});
 				return;
 			}
 

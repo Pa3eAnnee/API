@@ -11,7 +11,7 @@ export const getAgendas = (app: Express): void => {
 
 	app.get("/agendas/:id", async (req: Request, res: Response) => {
 		const agendaId = Number.parseInt(req.params.id);
-		if (!agendaId || isNaN(Number(agendaId))) {
+		if (!agendaId || Number.isNaN(Number(agendaId))) {
 			res.status(400).send({ error: "Invalid agenda ID" });
 			return;
 		}

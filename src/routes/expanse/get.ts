@@ -11,7 +11,7 @@ export const getExpanses = (app: Express): void => {
 
 	app.get("/expanses/:id", async (req: Request, res: Response) => {
 		const expanseId = Number.parseInt(req.params.id);
-		if (!expanseId || isNaN(Number(expanseId))) {
+		if (!expanseId || Number.isNaN(Number(expanseId))) {
 			res.status(400).send({ error: "Invalid expanse ID" });
 			return;
 		}

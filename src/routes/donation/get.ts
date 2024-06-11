@@ -11,7 +11,7 @@ export const getDonations = (app: Express): void => {
 
 	app.get("/donations/:id", async (req: Request, res: Response) => {
 		const donationId = Number.parseInt(req.params.id);
-		if (!donationId || isNaN(Number(donationId))) {
+		if (!donationId || Number.isNaN(Number(donationId))) {
 			res.status(400).send({ error: "Invalid donation ID" });
 			return;
 		}

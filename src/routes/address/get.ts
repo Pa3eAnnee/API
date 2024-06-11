@@ -14,7 +14,7 @@ export const getAddresses = (app: Express): void => {
 	app.get("/addresses/:id", async (req: Request, res: Response) => {
 		const addressId = Number.parseInt(req.params.id);
 
-		if (isNaN(addressId)) {
+		if (Number.isNaN(addressId)) {
 			res.status(400).send({ error: "Invalid address ID" });
 			return;
 		}

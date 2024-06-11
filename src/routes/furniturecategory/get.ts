@@ -12,7 +12,7 @@ export const getFurnitureCategorys = (app: Express): void => {
 
 	app.get("/furniturecategorys/:id", async (req: Request, res: Response) => {
 		const furnitureCategoryId = Number.parseInt(req.params.id);
-		if (!furnitureCategoryId || isNaN(Number(furnitureCategoryId))) {
+		if (!furnitureCategoryId || Number.isNaN(Number(furnitureCategoryId))) {
 			res.status(400).send({ error: "Invalid furnitureCategory ID" });
 			return;
 		}
@@ -25,11 +25,9 @@ export const getFurnitureCategorys = (app: Express): void => {
 				id: furnitureCategoryId,
 			});
 			if (!furniturecategory) {
-				res
-					.status(404)
-					.send({
-						error: `FurnitureCategory with ID ${furnitureCategoryId} not found`,
-					});
+				res.status(404).send({
+					error: `FurnitureCategory with ID ${furnitureCategoryId} not found`,
+				});
 				return;
 			}
 			res.status(200).send(furniturecategory);

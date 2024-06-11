@@ -7,7 +7,7 @@ export const deleteBuilding = (app: Express): void => {
 	app.delete("/buildings/:id", async (req: Request, res: Response) => {
 		const buildingId = Number.parseInt(req.params.id);
 
-		if (isNaN(buildingId)) {
+		if (Number.isNaN(buildingId)) {
 			res.status(400).send({ error: "Invalid building ID" });
 			return;
 		}
@@ -24,11 +24,9 @@ export const deleteBuilding = (app: Express): void => {
 			}
 
 			await buildingRepo.delete(buildingId);
-			res
-				.status(200)
-				.send({
-					message: `Building with ID ${buildingId} deleted successfully`,
-				});
+			res.status(200).send({
+				message: `Building with ID ${buildingId} deleted successfully`,
+			});
 		} catch (error) {
 			console.error(error);
 			res.status(500).send({ error: "Internal error" });

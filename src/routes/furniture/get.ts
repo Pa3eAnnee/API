@@ -11,7 +11,7 @@ export const getFurnitures = (app: Express): void => {
 
 	app.get("/furnitures/:id", async (req: Request, res: Response) => {
 		const furnitureId = Number.parseInt(req.params.id);
-		if (!furnitureId || isNaN(Number(furnitureId))) {
+		if (!furnitureId || Number.isNaN(Number(furnitureId))) {
 			res.status(400).send({ error: "Invalid furniture ID" });
 			return;
 		}

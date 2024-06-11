@@ -11,7 +11,7 @@ export const getIncludes = (app: Express): void => {
 
 	app.get("/includes/:id", async (req: Request, res: Response) => {
 		const includeId = Number.parseInt(req.params.id);
-		if (!includeId || isNaN(Number(includeId))) {
+		if (!includeId || Number.isNaN(Number(includeId))) {
 			res.status(400).send({ error: "Invalid include ID" });
 			return;
 		}

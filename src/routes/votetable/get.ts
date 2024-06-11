@@ -11,7 +11,7 @@ export const getVoteTables = (app: Express): void => {
 
 	app.get("/votetables/:id", async (req: Request, res: Response) => {
 		const voteTableId = Number.parseInt(req.params.id);
-		if (!voteTableId || isNaN(Number(voteTableId))) {
+		if (!voteTableId || Number.isNaN(Number(voteTableId))) {
 			res.status(400).send({ error: "Invalid voteTable ID" });
 			return;
 		}

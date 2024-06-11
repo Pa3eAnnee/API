@@ -7,7 +7,7 @@ export const deleteGeneralAssembly = (app: Express): void => {
 	app.delete("/generalassemblies/:id", async (req: Request, res: Response) => {
 		const generalAssemblyId = Number.parseInt(req.params.id);
 
-		if (isNaN(generalAssemblyId)) {
+		if (Number.isNaN(generalAssemblyId)) {
 			res.status(400).send({ error: "Invalid generalAssembly ID" });
 			return;
 		}
@@ -19,20 +19,16 @@ export const deleteGeneralAssembly = (app: Express): void => {
 				id: generalAssemblyId,
 			});
 			if (!generalAssembly) {
-				res
-					.status(404)
-					.send({
-						error: `GeneralAssembly with ID ${generalAssemblyId} not found`,
-					});
+				res.status(404).send({
+					error: `GeneralAssembly with ID ${generalAssemblyId} not found`,
+				});
 				return;
 			}
 
 			await generalAssemblyRepo.delete(generalAssemblyId);
-			res
-				.status(200)
-				.send({
-					message: `GeneralAssembly with ID ${generalAssemblyId} deleted successfully`,
-				});
+			res.status(200).send({
+				message: `GeneralAssembly with ID ${generalAssemblyId} deleted successfully`,
+			});
 		} catch (error) {
 			console.error(error);
 			res.status(500).send({ error: "Internal error" });

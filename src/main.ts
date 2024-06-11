@@ -1,4 +1,4 @@
-import path from "path";
+import path from "node:path";
 import express from "express";
 import { AppDataSource } from "./database/database";
 import * as routes from "./routes";
@@ -8,7 +8,7 @@ const port = 3000;
 const main = async () => {
 	app
 		.use(express.json())
-		.use(express.static(path.join(__dirname + "/../java-client")));
+		.use(express.static(path.join(`${__dirname}/../java-client`)));
 
 	AppDataSource.initialize()
 		.then(() => {
@@ -16,13 +16,14 @@ const main = async () => {
 		})
 		.catch((error) => console.log(error));
 
-	Object.keys(routes).forEach((routeName) => {
+	for (const routeName of Object.keys(routes)) {
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		(routes as any)[routeName](app);
-	});
+	}
 
-	Object.keys(routes).forEach((key) => {
-		(routes as any)[key](app);
-	});
+	// biome-ignore lint/complexity/noForEach: <explanation>
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	Object.keys(routes).forEach((key) => (routes as any)[key](app));
 
 	app.listen(port, () => {
 		console.log("Server is running on port 3000");

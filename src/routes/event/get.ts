@@ -11,7 +11,7 @@ export const getEvents = (app: Express): void => {
 
 	app.get("/events/:id", async (req: Request, res: Response) => {
 		const eventId = Number.parseInt(req.params.id);
-		if (!eventId || isNaN(Number(eventId))) {
+		if (!eventId || Number.isNaN(Number(eventId))) {
 			res.status(400).send({ error: "Invalid event ID" });
 			return;
 		}

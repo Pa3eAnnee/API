@@ -14,7 +14,7 @@ export const getBuildings = (app: Express): void => {
 	app.get("/buildings/:id", async (req: Request, res: Response) => {
 		const buildingId = Number.parseInt(req.params.id);
 
-		if (isNaN(buildingId)) {
+		if (Number.isNaN(buildingId)) {
 			res.status(400).send({ error: "Invalid building ID" });
 			return;
 		}

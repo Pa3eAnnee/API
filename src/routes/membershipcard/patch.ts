@@ -29,11 +29,9 @@ export const updateMembershipCard = (app: Express): void => {
 				id: membershipCardRequest.id,
 			});
 			if (!membershipCard) {
-				res
-					.status(404)
-					.send({
-						error: `MembershipCard with ID ${membershipCardRequest.id} not found`,
-					});
+				res.status(404).send({
+					error: `MembershipCard with ID ${membershipCardRequest.id} not found`,
+				});
 				return;
 			}
 

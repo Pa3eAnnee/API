@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import type { Express, Request, Response } from "express";
 export const getLatestVersion = (app: Express) => {
 	app.get("/getLatestVersion", (req: Request, res: Response) => {
