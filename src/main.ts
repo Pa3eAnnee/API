@@ -17,7 +17,6 @@ const main = async () => {
 		.catch((error) => console.log(error));
 
 	for (const routeName of Object.keys(routes)) {
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		(routes as any)[routeName](app);
 	}
 
