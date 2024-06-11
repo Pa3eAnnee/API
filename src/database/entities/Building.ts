@@ -1,29 +1,23 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "Building" })
 export class Building {
+	@PrimaryGeneratedColumn()
+	id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number
+	@Column()
+	name: string;
 
-    @Column()
-    name: string
+	@Column()
+	address_id: number;
 
-    @Column()
-    address_id: number
+	@Column()
+	floor: string;
 
-    @Column()
-    floor: string
-
-    constructor(
-        id: number,
-        name: string,
-        address_id: number,
-        floor: string
-    ) {
-        this.id = id;
-        this.name = name;
-        this.address_id = address_id;
-        this.floor = floor;
-    }
+	constructor(id: number, name: string, address_id: number, floor: string) {
+		this.id = id;
+		this.name = name;
+		this.address_id = address_id;
+		this.floor = floor;
+	}
 }

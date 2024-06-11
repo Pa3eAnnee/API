@@ -1,19 +1,20 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import * as fs from "fs";
+import * as path from "path";
 
 const entityName = process.argv[2];
 
 if (!entityName) {
-    console.error('Please provide an entity name.');
-    process.exit(1);
+	console.error("Please provide an entity name.");
+	process.exit(1);
 }
 
-const entityCapitalized = entityName.charAt(0).toUpperCase() + entityName.slice(1);
+const entityCapitalized =
+	entityName.charAt(0).toUpperCase() + entityName.slice(1);
 const entityLowercase = entityName.toLowerCase();
 
-const routeDir = path.join(__dirname, 'src', 'routes', entityLowercase);
-const validatorDir = path.join(__dirname, 'src', 'handlers', 'validators');
-const useCaseDir = path.join(__dirname, 'src', 'domain');
+const routeDir = path.join(__dirname, "src", "routes", entityLowercase);
+const validatorDir = path.join(__dirname, "src", "handlers", "validators");
+const useCaseDir = path.join(__dirname, "src", "domain");
 
 // Ensure directories exist
 fs.mkdirSync(routeDir, { recursive: true });
@@ -21,7 +22,7 @@ fs.mkdirSync(validatorDir, { recursive: true });
 fs.mkdirSync(useCaseDir, { recursive: true });
 
 const routeTemplates = {
-    'delete.ts': `
+	"delete.ts": `
 import { Express, Request, Response } from 'express';
 import { AppDataSource } from '../../database/database';
 import { ${entityCapitalized} } from '../../database/entities/${entityCapitalized}';
@@ -54,7 +55,7 @@ export const delete${entityCapitalized} = (app: Express): void => {
     })
 }
     `,
-    'get.ts': `
+	"get.ts": `
 import { Express, Request, Response } from 'express';
 import { AppDataSource } from '../../database/database';
 import { ${entityCapitalized} } from '../../database/entities/${entityCapitalized}';
@@ -89,13 +90,13 @@ export const get${entityCapitalized}s = (app: Express): void => {
     });
 }
     `,
-    'index.ts': `
+	"index.ts": `
 export * from './post';
 export * from './get';
 export * from './patch';
 export * from './delete';
     `,
-    'patch.ts': `
+	"patch.ts": `
 import { Express, Request, Response } from 'express';
 import { AppDataSource } from '../../database/database';
 import { ${entityCapitalized} } from '../../database/entities/${entityCapitalized}';
@@ -134,7 +135,7 @@ export const update${entityCapitalized} = (app: Express): void => {
     });
 }
     `,
-    'post.ts': `
+	"post.ts": `
 import { Express, Request, Response } from 'express';
 import { AppDataSource } from '../../database/database';
 import { ${entityCapitalized} } from '../../database/entities/${entityCapitalized}';
@@ -159,7 +160,7 @@ export const create${entityCapitalized} = (app: Express) => {
         }
     });
 }
-    `
+    `,
 };
 
 const validatorTemplate = `
@@ -206,12 +207,15 @@ export class ${entityCapitalized}Usecase {
 
 // Write the route files
 Object.entries(routeTemplates).forEach(([fileName, content]) => {
-    const filePath = path.join(routeDir, fileName);
-    fs.writeFileSync(filePath, content.trim());
+	const filePath = path.join(routeDir, fileName);
+	fs.writeFileSync(filePath, content.trim());
 });
 
 // Write the validator file
-const validatorFilePath = path.join(validatorDir, `${entityLowercase}-validator.ts`);
+const validatorFilePath = path.join(
+	validatorDir,
+	`${entityLowercase}-validator.ts`,
+);
 fs.writeFileSync(validatorFilePath, validatorTemplate.trim());
 
 // Write the use case file

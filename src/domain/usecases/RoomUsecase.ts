@@ -1,53 +1,53 @@
-import { DataSource } from "typeorm";
+import type { DataSource } from "typeorm";
 import { Room } from "../../database/entities/Room";
 
 export interface CreateRoomRequest {
-    name: string;
-    capacity: number;
-    image: string;
-    building_id: number;
-    equipment: string;
+	name: string;
+	capacity: number;
+	image: string;
+	building_id: number;
+	equipment: string;
 }
 
 export interface UpdateRoomRequest {
-    name?: string;
-    capacity?: number;
-    image?: string;
-    building_id?: number;
-    equipment?: string;
+	name?: string;
+	capacity?: number;
+	image?: string;
+	building_id?: number;
+	equipment?: string;
 }
 
 export class RoomUsecase {
-    constructor(private readonly db: DataSource) { }
+	constructor(private readonly db: DataSource) {}
 
-    async getRoom(id: number): Promise<Room | null> {
-        const repo = this.db.getRepository(Room);
-        const entityFound = await repo.findOneBy({ id });
-        if (entityFound === null) return null;
-        return entityFound;
-    }
+	async getRoom(id: number): Promise<Room | null> {
+		const repo = this.db.getRepository(Room);
+		const entityFound = await repo.findOneBy({ id });
+		if (entityFound === null) return null;
+		return entityFound;
+	}
 
-    async deleteRoom(id: number): Promise<Room | null> {
-        const repo = this.db.getRepository(Room);
-        const entityFound = await repo.findOneBy({ id });
-        if (entityFound === null) return null;
+	async deleteRoom(id: number): Promise<Room | null> {
+		const repo = this.db.getRepository(Room);
+		const entityFound = await repo.findOneBy({ id });
+		if (entityFound === null) return null;
 
-        const entityDelete = await repo.remove(entityFound);
-        return entityDelete;
-    }
+		const entityDelete = await repo.remove(entityFound);
+		return entityDelete;
+	}
 
-    async createRoom(data: CreateRoomRequest): Promise<Room> {
-        const repo = this.db.getRepository(Room);
-        const newRoom = repo.create(data);
-        return await repo.save(newRoom);
-    }
+	async createRoom(data: CreateRoomRequest): Promise<Room> {
+		const repo = this.db.getRepository(Room);
+		const newRoom = repo.create(data);
+		return await repo.save(newRoom);
+	}
 
-    async updateRoom(id: number, data: UpdateRoomRequest): Promise<Room | null> {
-        const repo = this.db.getRepository(Room);
-        let entityFound = await repo.findOneBy({ id });
-        if (entityFound === null) return null;
+	async updateRoom(id: number, data: UpdateRoomRequest): Promise<Room | null> {
+		const repo = this.db.getRepository(Room);
+		let entityFound = await repo.findOneBy({ id });
+		if (entityFound === null) return null;
 
-        entityFound = { ...entityFound, ...data };
-        return await repo.save(entityFound);
-    }
+		entityFound = { ...entityFound, ...data };
+		return await repo.save(entityFound);
+	}
 }

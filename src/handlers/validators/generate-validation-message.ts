@@ -1,3 +1,3 @@
 export const generateValidationErrorMessage = (details: any): string => {
-    return details.map((detail: any) => detail.message).join(', ');
+	return details.map((detail: any) => detail.message).join(", ");
 };

@@ -1,16 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "EXPANSE_CATEGORY" })
 export class ExpanseCategory {
+	@PrimaryGeneratedColumn()
+	id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number
+	@Column()
+	name: string;
 
-    @Column()
-    name: string
-
-    constructor(id: number, name: string) {
-        this.id = id;
-        this.name = name;
-    }
+	constructor(id: number, name: string) {
+		this.id = id;
+		this.name = name;
+	}
 }
