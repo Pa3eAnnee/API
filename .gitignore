@@ -10135,3 +10135,4 @@ java-client/*
 /node_modules/minipass-sized/package.json
 /node_modules/minipass-sized/package-lock.json
 /node_modules/minipass-sized/README.md
+/dist/
