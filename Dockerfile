@@ -1,5 +1,5 @@
 # Base server
-FROM node:22-alpine as base
+FROM node:20-alpine as base
 
 # hadolint ignore=DL3018
 RUN apk add --no-cache gcompat
@@ -11,8 +11,6 @@ COPY --chown=node:node package.json package-lock.json ./
 
 ENV PORT $PORT
 EXPOSE $PORT
-
-
 
 # Development
 FROM base as dev

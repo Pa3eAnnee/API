@@ -3,7 +3,7 @@ import express from "express";
 import { AppDataSource } from "./database/database";
 import * as routes from "./routes";
 const app = express();
-const port = 3000;
+const port = process.env.port || 3000;
 
 const main = async () => {
 	app
@@ -26,7 +26,7 @@ const main = async () => {
 	Object.keys(routes).forEach((key) => (routes as any)[key](app));
 
 	app.listen(port, () => {
-		console.log("Server is running on port 3000");
+		console.log(`Server is running on port ${port}`);
 	});
 };
 
