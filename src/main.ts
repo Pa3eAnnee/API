@@ -12,7 +12,7 @@ const main = async () => {
 
 	AppDataSource.initialize()
 		.then(() => {
-			console.log("Connected to database");
+			console.log("Connected to database V2");
 		})
 		.catch((error) => console.log(error));
 
