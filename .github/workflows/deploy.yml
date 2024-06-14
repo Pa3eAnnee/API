@@ -55,4 +55,5 @@ jobs:
             cd /image/api
             npm install
             npm run build
-            docker compose restart
+            docker stop api-server-1
+            docker compose -f "docker-compose.prod.yaml" up -d --build
