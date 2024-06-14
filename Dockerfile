@@ -31,4 +31,4 @@ FROM base as prod
 ENV NODE_ENV=production
 COPY --from=build --chown=node:node /app/dist ./dist
 COPY --from=build --chown=node:node /app/node_modules ./node_modules
-CMD ["node", "dist/api.js"]
+CMD ["node", "dist/src/main.js"]

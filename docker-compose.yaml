@@ -18,16 +18,13 @@ services:
   server:
     build:
       context: .
-      target: dev
+      target: prod
       dockerfile: Dockerfile
     tty: true
     stdin_open: true
     restart: unless-stopped
     env_file:
       - .env
-    volumes:
-      - /app/node_modules
-      - .:/app:rw
     ports:
       - '3000:3000'
     depends_on:

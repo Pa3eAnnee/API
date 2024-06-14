@@ -9,6 +9,6 @@ export const AppDataSource = new DataSource({
 	database: "odm",
 	logging: true,
 	synchronize: true,
-	entities: ["src/database/entities/*.ts"],
-	migrations: ["src/database/migrations/*.ts"],
+	entities: ["dist/src/database/entities/*.js"],
+	migrations: ["src/database/migrations/*.js"],
 });
