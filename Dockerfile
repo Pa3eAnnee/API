@@ -14,21 +14,21 @@ EXPOSE $PORT
 
 # Development
 FROM base as dev
-ENV NODE_ENV=development
-RUN npm install
+ENV NODE_ENV=dev
+RUN npm ci
 COPY --chown=node:node . .
 CMD ["npm", "run", "start:dev"]
 
 # Build
 FROM base as build
-RUN npm install
+RUN npm ci
 COPY --chown=node:node . .
 RUN npm run build && \
     npm prune --production
 
 # Production
 FROM base as prod
-ENV NODE_ENV=production
+ENV NODE_ENV=prod
 COPY --from=build --chown=node:node /app/dist ./dist
 COPY --from=build --chown=node:node /app/node_modules ./node_modules
 CMD ["node", "dist/src/main.js"]
