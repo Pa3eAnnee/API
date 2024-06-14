@@ -9,6 +9,14 @@ export const AppDataSource = new DataSource({
 	database: "odm",
 	logging: true,
 	synchronize: true,
-	entities: ["dist/src/database/entities/*.js"],
-	migrations: ["src/database/migrations/*.js"],
+	entities: [
+		process.env.NODE_ENV === "dev"
+			? "src/database/entities/*.ts"
+			: "dist/src/database/entities/*.js",
+	],
+	migrations: [
+		process.env.NODE_ENV === "dev"
+			? "src/database/migrations/*.ts"
+			: "dist/src/database/migrations/*.js",
+	],
 });

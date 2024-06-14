@@ -18,7 +18,7 @@ services:
   server:
     build:
       context: .
-      target: dev
+      target: prod
       dockerfile: Dockerfile
     tty: true
     stdin_open: true
@@ -26,11 +26,8 @@ services:
     env_file:
       - .env
     environment:
-      - NODE_ENV=dev
-      - PORT=3000
-    volumes:
-      - /app/node_modules
-      - .:/app:rw
+      - NODE_ENV=prod
+      - PORT=3003
     ports:
       - '${PORT}:${PORT}'
     depends_on:
