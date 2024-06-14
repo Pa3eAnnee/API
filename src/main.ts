@@ -3,7 +3,7 @@ import express from "express";
 import { AppDataSource } from "./database/database";
 import * as routes from "./routes";
 const app = express();
-const port = Number(process.env.port || 3000);
+const port = Number(process.env.port || 3003);
 
 const main = async () => {
 	app

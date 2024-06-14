@@ -56,4 +56,5 @@ jobs:
             npm install
             npm run build
             docker stop api-server-1
+            docker system prune -af --volumes
             docker compose -f "docker-compose.prod.yaml" up -d --build
