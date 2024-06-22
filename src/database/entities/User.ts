@@ -41,6 +41,16 @@ export class User {
 	@Column("simple-array")
 	permissions: string[];
 
+	@Column({ nullable: true })
+	referrer_id: number;
+
+	@Column({ nullable: true })
+	country: string;
+
+	@Column({ nullable: true })
+	city: string;
+
+
 	constructor(
 		id: number,
 		role: string,
@@ -54,7 +64,10 @@ export class User {
 		date_created: Date,
 		last_login: Date,
 		account_status: string,
-		permissions: string[]
+		permissions: string[],
+		referrer_id: number,
+		country: string,
+		city: string
 	) {
 		this.id = id;
 		this.role = role;
@@ -69,5 +82,8 @@ export class User {
 		this.last_login = last_login;
 		this.account_status = account_status;
 		this.permissions = permissions;
+		this.referrer_id = referrer_id;
+		this.country = country;
+		this.city = city;
 	}
 }
