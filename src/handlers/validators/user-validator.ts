@@ -1,50 +1,63 @@
-import Joi from "joi";
+import * as Joi from "joi";
 
-// Define the request interfaces
-export interface CreateUserRequest {
+export const createUserValidation = Joi.object({
+	role: Joi.string().required(),
+	first_name: Joi.string().required(),
+	last_name: Joi.string().required(),
+	birthday: Joi.date().required(),
+	sexe: Joi.string().required(),
+	phone: Joi.string().required(),
+	email: Joi.string().email().required(),
+	password: Joi.string().required(),
+	date_created: Joi.date().optional(), // Usually set automatically
+	last_login: Joi.date().optional(),
+	account_status: Joi.string().required(),
+	permissions: Joi.array().items(Joi.string()).required()
+}).options({ abortEarly: false });
+
+export const updateUserValidation = Joi.object({
+	id: Joi.number().required(),
+	role: Joi.string().optional(),
+	first_name: Joi.string().optional(),
+	last_name: Joi.string().optional(),
+	birthday: Joi.date().optional(),
+	sexe: Joi.string().optional(),
+	phone: Joi.string().optional(),
+	email: Joi.string().email().optional(),
+	password: Joi.string().optional(),
+	date_created: Joi.date().optional(), // Usually set automatically
+	last_login: Joi.date().optional(),
+	account_status: Joi.string().optional(),
+	permissions: Joi.array().items(Joi.string()).optional()
+}).options({ abortEarly: false });
+
+export type CreateUserRequest = {
 	role: string;
 	first_name: string;
 	last_name: string;
 	birthday: Date;
 	sexe: string;
-	email: string;
 	phone: string;
+	email: string;
 	password: string;
-}
+	date_created?: Date; // Optional because it's set automatically
+	last_login?: Date;
+	account_status: string;
+	permissions: string[];
+};
 
-export interface UpdateUserRequest {
+export type UpdateUserRequest = {
 	id: number;
 	role?: string;
 	first_name?: string;
 	last_name?: string;
 	birthday?: Date;
 	sexe?: string;
-	email?: string;
 	phone?: string;
+	email?: string;
 	password?: string;
-}
-
-// Create validation schema
-export const createUserValidation = Joi.object<CreateUserRequest>({
-	role: Joi.string().min(1).required(),
-	first_name: Joi.string().min(1).required(),
-	last_name: Joi.string().min(1).required(),
-	birthday: Joi.date().required(),
-	sexe: Joi.string().min(1).required(),
-	email: Joi.string().email().required(),
-	phone: Joi.string().min(1).required(),
-	password: Joi.string().min(8).required(),
-}).options({ abortEarly: false });
-
-// Update validation schema
-export const updateUserValidation = Joi.object<UpdateUserRequest>({
-	id: Joi.number().required(),
-	role: Joi.string().min(1).optional(),
-	first_name: Joi.string().min(1).optional(),
-	last_name: Joi.string().min(1).optional(),
-	birthday: Joi.date().optional(),
-	sexe: Joi.string().min(1).optional(),
-	email: Joi.string().email().optional(),
-	phone: Joi.string().min(1).optional(),
-	password: Joi.string().min(8).optional(),
-}).options({ abortEarly: false });
+	date_created?: Date; // Optional because it's set automatically
+	last_login?: Date;
+	account_status?: string;
+	permissions?: string[];
+};

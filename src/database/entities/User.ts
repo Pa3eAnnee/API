@@ -21,13 +21,25 @@ export class User {
 	sexe: string;
 
 	@Column()
-	email: string;
-
-	@Column()
 	phone: string;
 
 	@Column()
+	email: string;
+
+	@Column()
 	password: string;
+
+	@Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+	date_created: Date;
+
+	@Column({ type: "timestamp", nullable: true })
+	last_login: Date;
+
+	@Column({ nullable: true })
+	account_status: string;
+
+	@Column("simple-array")
+	permissions: string[];
 
 	constructor(
 		id: number,
@@ -39,6 +51,10 @@ export class User {
 		email: string,
 		phone: string,
 		password: string,
+		date_created: Date,
+		last_login: Date,
+		account_status: string,
+		permissions: string[]
 	) {
 		this.id = id;
 		this.role = role;
@@ -49,5 +65,9 @@ export class User {
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
+		this.date_created = date_created;
+		this.last_login = last_login;
+		this.account_status = account_status;
+		this.permissions = permissions;
 	}
 }
