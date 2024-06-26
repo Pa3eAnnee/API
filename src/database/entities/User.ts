@@ -50,7 +50,6 @@ export class User {
 	@Column({ nullable: true })
 	city: string;
 
-
 	constructor(
 		id: number,
 		role: string,
@@ -67,7 +66,7 @@ export class User {
 		permissions: string[],
 		referrer_id: number,
 		country: string,
-		city: string
+		city: string,
 	) {
 		this.id = id;
 		this.role = role;

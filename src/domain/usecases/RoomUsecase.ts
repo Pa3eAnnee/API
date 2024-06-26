@@ -1,6 +1,6 @@
+import { string } from "joi";
 import type { DataSource } from "typeorm";
 import { Room } from "../../database/entities/Room";
-import { string } from "joi";
 
 export interface CreateRoomRequest {
 	name: string;

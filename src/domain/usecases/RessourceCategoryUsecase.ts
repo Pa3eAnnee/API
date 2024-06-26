@@ -1,9 +1,5 @@
-import { DataSource } from "typeorm";
+import type { DataSource } from "typeorm";
 import { RessourceCategory } from "../../database/entities/RessourceCategory";
-
-export interface UpdateRessourceCategoryRequest {
-	// Add your request fields here
-}
 
 export class RessourceCategoryUsecase {
 	constructor(private readonly db: DataSource) {}

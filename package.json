@@ -9,7 +9,8 @@
 		"start": "node dist/src/main.js",
 		"start:dev": "nodemon -e ts --exec ts-node src/main.ts",
 		"lint": "biome check --write .",
-		"lint:check": "biome ci ."
+		"lint:check": "biome ci .",
+		"lint:fix": "biome check --fix"
 	},
 	"author": "",
 	"license": "ISC",

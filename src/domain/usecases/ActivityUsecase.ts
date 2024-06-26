@@ -1,4 +1,4 @@
-import { DataSource } from "typeorm";
+import type { DataSource } from "typeorm";
 import { Activity } from "../../database/entities/Activity";
 import { updateActivityValidation } from "../../handlers/validators/activity-validator";
 

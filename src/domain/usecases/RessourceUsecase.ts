@@ -1,9 +1,5 @@
-import { DataSource } from "typeorm";
+import type { DataSource } from "typeorm";
 import { Ressource } from "../../database/entities/Ressource";
-
-export interface UpdateRessourceRequest {
-	// Add your request fields here
-}
 
 export class RessourceUsecase {
 	constructor(private readonly db: DataSource) {}

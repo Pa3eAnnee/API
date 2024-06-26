@@ -1,7 +1,7 @@
 import * as Joi from "joi";
 
 export const createUserValidation = Joi.object({
-	role: Joi.string().valid('guest', 'employee', 'admin', 'user').required(),
+	role: Joi.string().valid("guest", "employee", "admin", "user").required(),
 	first_name: Joi.string().required(),
 	last_name: Joi.string().required(),
 	birthday: Joi.date().required(),
@@ -15,12 +15,12 @@ export const createUserValidation = Joi.object({
 	permissions: Joi.array().items(Joi.string()).required(),
 	referrer_id: Joi.number().optional(), // Added validation for referrer ID
 	country: Joi.string().required(), // Added validation for country
-	city: Joi.string().required() // Added validation for city
+	city: Joi.string().required(), // Added validation for city
 }).options({ abortEarly: false });
 
 export const updateUserValidation = Joi.object({
 	id: Joi.number().required(),
-	role: Joi.string().valid('guest', 'employee', 'admin', 'user').optional(),
+	role: Joi.string().valid("guest", "employee", "admin", "user").optional(),
 	first_name: Joi.string().optional(),
 	last_name: Joi.string().optional(),
 	birthday: Joi.date().optional(),
@@ -34,7 +34,7 @@ export const updateUserValidation = Joi.object({
 	permissions: Joi.array().items(Joi.string()).optional(),
 	referrer_id: Joi.number().optional(), // Added validation for referrer ID
 	country: Joi.string().optional(), // Added validation for country
-	city: Joi.string().optional() // Added validation for city
+	city: Joi.string().optional(), // Added validation for city
 }).options({ abortEarly: false });
 
 export type CreateUserRequest = {
