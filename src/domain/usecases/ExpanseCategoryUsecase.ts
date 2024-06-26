@@ -1,11 +1,11 @@
 import type { DataSource } from "typeorm";
-import { ExpanseCategory } from "../database/entities/ExpanseCategory";
+import { ExpanseCategory } from "../../database/entities/ExpanseCategory";
 import {
 	type CreateExpanseCategoryRequest,
 	type UpdateExpanseCategoryRequest,
 	createExpanseCategoryValidation,
 	updateExpanseCategoryValidation,
-} from "../handlers/validators/expansecategory-validator";
+} from "../../handlers/validators/expansecategory-validator";
 
 export class ExpanseCategoryUsecase {
 	constructor(private readonly db: DataSource) {}
