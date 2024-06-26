@@ -20,6 +20,9 @@ export class Room {
 	@Column()
 	equipment: string;
 
+	@Column()
+	status: string;
+
 	constructor(
 		id: number,
 		name: string,
@@ -27,6 +30,7 @@ export class Room {
 		image: string,
 		building_id: number,
 		equipment: string,
+		status: string,
 	) {
 		this.id = id;
 		this.name = name;
@@ -34,5 +38,6 @@ export class Room {
 		this.image = image;
 		this.building_id = building_id;
 		this.equipment = equipment;
+		this.status = status;
 	}
 }

@@ -1,5 +1,6 @@
 import type { DataSource } from "typeorm";
 import { Room } from "../../database/entities/Room";
+import { string } from "joi";
 
 export interface CreateRoomRequest {
 	name: string;
@@ -7,6 +8,7 @@ export interface CreateRoomRequest {
 	image: string;
 	building_id: number;
 	equipment: string;
+	status: string;
 }
 
 export interface UpdateRoomRequest {
@@ -15,6 +17,7 @@ export interface UpdateRoomRequest {
 	image?: string;
 	building_id?: number;
 	equipment?: string;
+	string?: string;
 }
 
 export class RoomUsecase {
