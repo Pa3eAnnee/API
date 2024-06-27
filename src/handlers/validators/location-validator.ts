@@ -1,32 +1,24 @@
-import * as Joi from "joi";
+import Joi from "joi";
 
-export type CreateLocationRequest = {
+export interface CreateLocationRequest {
 	room_id?: number;
 	building_id?: number;
 	address_id?: number;
-};
+}
 
-export type UpdateLocationRequest = {
+export interface UpdateLocationRequest extends Partial<CreateLocationRequest> {
 	id: number;
-	room_id?: number;
-	building_id?: number;
-	address_id?: number;
-};
+}
 
-// Validator schemas
-export const createLocationValidation = Joi.object({
-	room_id: Joi.number().integer().min(1).max(100).optional(),
-	building_id: Joi.number().integer().min(1).max(100).optional(),
-	address_id: Joi.number().integer().min(1).max(100).optional(),
-})
-	.or("room_id", "building_id", "address_id")
-	.required();
+export const createLocationValidation = Joi.object<CreateLocationRequest>({
+	room_id: Joi.number().optional(),
+	building_id: Joi.number().optional(),
+	address_id: Joi.number().optional(),
+}).options({ abortEarly: false });
 
-export const updateLocationValidation = Joi.object({
+export const updateLocationValidation = Joi.object<UpdateLocationRequest>({
 	id: Joi.number().required(),
-	room_id: Joi.number().integer().min(1).max(100).optional(),
-	building_id: Joi.number().integer().min(1).max(100).optional(),
-	address_id: Joi.number().integer().min(1).max(100).optional(),
-})
-	.or("room_id", "building_id", "address_id")
-	.required();
+	room_id: Joi.number().optional(),
+	building_id: Joi.number().optional(),
+	address_id: Joi.number().optional(),
+}).options({ abortEarly: false });

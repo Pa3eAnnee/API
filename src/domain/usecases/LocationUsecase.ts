@@ -1,9 +1,11 @@
 import type { DataSource } from "typeorm";
-import { Location } from "../database/entities/Location";
-import {
-	createLocationValidation,
-	updateLocationValidation,
-} from "../handlers/validators/location-validator";
+import { Location } from "../../database/entities/Location";
+
+export interface CreateLocationRequest {
+	room_id?: number;
+	building_id?: number;
+	address_id?: number;
+}
 
 export interface UpdateLocationRequest {
 	id: number;
@@ -17,53 +19,32 @@ export class LocationUsecase {
 
 	async getLocation(id: number): Promise<Location | null> {
 		const repo = this.db.getRepository(Location);
-		const entityFound = await repo.findOne({ id });
-		if (!entityFound) return null;
+		const entityFound = await repo.findOneBy({ id });
+		if (entityFound === null) return null;
 		return entityFound;
 	}
 
 	async deleteLocation(id: number): Promise<Location | null> {
 		const repo = this.db.getRepository(Location);
-		const entityFound = await repo.findOne({ id });
-		if (!entityFound) return null;
+		const entityFound = await repo.findOneBy({ id });
+		if (entityFound === null) return null;
+
 		const entityDelete = await repo.remove(entityFound);
 		return entityDelete;
 	}
 
-	async createLocation(locationData: CreateLocationRequest): Promise<Location> {
-		const { error } = createLocationValidation.validate(locationData);
-		if (error) {
-			throw new Error(`Invalid CreateLocationRequest data: ${error.message}`);
-		}
-
+	async createLocation(data: CreateLocationRequest): Promise<Location> {
 		const repo = this.db.getRepository(Location);
-		const newLocation = repo.create(locationData);
+		const newLocation = repo.create(data);
 		return await repo.save(newLocation);
 	}
 
-	async updateLocation(
-		id: number,
-		locationData: UpdateLocationRequest,
-	): Promise<Location | null> {
-		const { error } = updateLocationValidation.validate(locationData);
-		if (error) {
-			throw new Error(`Invalid UpdateLocationRequest data: ${error.message}`);
-		}
-
+	async updateLocation(id: number, data: UpdateLocationRequest): Promise<Location | null> {
 		const repo = this.db.getRepository(Location);
-		const entityFound = await repo.findOne({ id });
-		if (!entityFound) return null;
+		let entityFound = await repo.findOneBy({ id });
+		if (entityFound === null) return null;
 
-		if (locationData.room_id !== undefined) {
-			entityFound.room_id = locationData.room_id;
-		}
-		if (locationData.building_id !== undefined) {
-			entityFound.building_id = locationData.building_id;
-		}
-		if (locationData.address_id !== undefined) {
-			entityFound.address_id = locationData.address_id;
-		}
-
+		entityFound = { ...entityFound, ...data };
 		return await repo.save(entityFound);
 	}
 }

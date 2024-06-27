@@ -26,11 +26,11 @@ export const createMeetingValidation = Joi.object<CreateMeetingRequest>({
 
 export const updateMeetingValidation = Joi.object<UpdateMeetingRequest>({
 	id: Joi.number().required(),
-	subject: Joi.string().min(1).required(),
-	date: Joi.date().iso().required(),
-	status: Joi.string().min(1).required(),
-	start_time: Joi.date().iso().required(),
-	end_time: Joi.date().iso().required(),
-	location_id: Joi.number().required(),
-	organizer_id: Joi.number().required(),
+	subject: Joi.string().min(1).optional(),
+	date: Joi.date().iso().optional(),
+	status: Joi.string().min(1).optional(),
+	start_time: Joi.date().iso().optional(),
+	end_time: Joi.date().iso().optional(),
+	location_id: Joi.number().optional(),
+	organizer_id: Joi.number().optional(),
 }).options({ abortEarly: false });
