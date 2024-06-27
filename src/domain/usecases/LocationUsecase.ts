@@ -39,7 +39,10 @@ export class LocationUsecase {
 		return await repo.save(newLocation);
 	}
 
-	async updateLocation(id: number, data: UpdateLocationRequest): Promise<Location | null> {
+	async updateLocation(
+		id: number,
+		data: UpdateLocationRequest,
+	): Promise<Location | null> {
 		const repo = this.db.getRepository(Location);
 		let entityFound = await repo.findOneBy({ id });
 		if (entityFound === null) return null;
