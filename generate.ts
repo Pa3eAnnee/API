@@ -32,7 +32,7 @@ export const delete${entityCapitalized} = (app: Express): void => {
     app.delete('/${entityLowercase}s/:id', async (req: Request, res: Response) => {
         const ${entityName}Id = parseInt(req.params.id);
 
-        if (isNaN(${entityName}Id)) {
+        if (Number.isNaN(${entityName}Id)) {
             res.status(400).send({ error: 'Invalid ${entityName} ID' });
             return;
         }
@@ -69,7 +69,7 @@ export const get${entityCapitalized}s = (app: Express): void => {
 
     app.get('/${entityLowercase}s/:id', async (req: Request, res: Response) => {
         const ${entityName}Id = parseInt(req.params.id);
-        if (!${entityName}Id || isNaN(Number(${entityName}Id))) {
+        if (!${entityName}Id || Number.isNaN(Number(${entityName}Id))) {
             res.status(400).send({ error: 'Invalid ${entityName} ID' });
             return;
         }
