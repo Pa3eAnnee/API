@@ -17,8 +17,8 @@ export class Room {
 	@Column()
 	building_id: number;
 
-	@Column()
-	equipment: string;
+	@Column("simple-array")
+	equipment: string[];
 
 	@Column()
 	status: string;
@@ -29,7 +29,7 @@ export class Room {
 		capacity: number,
 		image: string,
 		building_id: number,
-		equipment: string,
+		equipment: string[],
 		status: string,
 	) {
 		this.id = id;
