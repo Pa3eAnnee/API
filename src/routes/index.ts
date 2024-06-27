@@ -33,3 +33,4 @@ export * from "./activity";
 export * from "./ressource";
 export * from "./ressourcecategory";
 export * from "./use";
+export * from "./location";
