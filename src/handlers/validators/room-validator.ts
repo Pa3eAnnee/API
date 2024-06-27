@@ -5,7 +5,8 @@ export interface CreateRoomRequest {
 	capacity: number;
 	image: string;
 	building_id: number;
-	equipment: string;
+	equipment: string[];
+	status: string;
 }
 
 export interface UpdateRoomRequest extends Partial<CreateRoomRequest> {
@@ -17,7 +18,8 @@ export const createRoomValidation = Joi.object<CreateRoomRequest>({
 	capacity: Joi.number().greater(0).required(),
 	image: Joi.string().uri().optional(), // Assuming image is a URL
 	building_id: Joi.number().required(),
-	equipment: Joi.string().optional(), // Assuming equipment is a JSON string or similar
+	equipment: Joi.array().items(Joi.string()).required(),
+	status: Joi.string().required(),
 }).options({ abortEarly: false });
 
 export const updateRoomValidation = Joi.object<UpdateRoomRequest>({
@@ -26,5 +28,6 @@ export const updateRoomValidation = Joi.object<UpdateRoomRequest>({
 	capacity: Joi.number().greater(0).optional(),
 	image: Joi.string().uri().optional(), // Assuming image is a URL
 	building_id: Joi.number().optional(),
-	equipment: Joi.string().optional(), // Assuming equipment is a JSON string or similar
+	equipment: Joi.array().items(Joi.string()).optional(),
+	status: Joi.string().required(),
 }).options({ abortEarly: false });

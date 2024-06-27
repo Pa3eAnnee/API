@@ -1,11 +1,11 @@
 import type { DataSource } from "typeorm";
-import { Topics } from "../database/entities/Topics";
+import { Topics } from "../../database/entities/Topics";
 import {
 	type CreateTopicsRequest,
 	type UpdateTopicsRequest,
 	createTopicsValidation,
 	updateTopicsValidation,
-} from "../handlers/validators/topics-validator";
+} from "../../handlers/validators/topics-validator";
 
 export class TopicsUsecase {
 	constructor(private readonly db: DataSource) {}

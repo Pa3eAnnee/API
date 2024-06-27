@@ -14,10 +14,20 @@ export class Building {
 	@Column()
 	floor: string;
 
-	constructor(id: number, name: string, address_id: number, floor: string) {
+	@Column()
+	status: string;
+
+	constructor(
+		id: number,
+		name: string,
+		address_id: number,
+		floor: string,
+		status: string,
+	) {
 		this.id = id;
 		this.name = name;
 		this.address_id = address_id;
 		this.floor = floor;
+		this.status = status;
 	}
 }

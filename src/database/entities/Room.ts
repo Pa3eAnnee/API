@@ -17,8 +17,11 @@ export class Room {
 	@Column()
 	building_id: number;
 
+	@Column("simple-array")
+	equipment: string[];
+
 	@Column()
-	equipment: string;
+	status: string;
 
 	constructor(
 		id: number,
@@ -26,7 +29,8 @@ export class Room {
 		capacity: number,
 		image: string,
 		building_id: number,
-		equipment: string,
+		equipment: string[],
+		status: string,
 	) {
 		this.id = id;
 		this.name = name;
@@ -34,5 +38,6 @@ export class Room {
 		this.image = image;
 		this.building_id = building_id;
 		this.equipment = equipment;
+		this.status = status;
 	}
 }

@@ -1,0 +1,6624 @@
+{
+	"info": {
+		"_postman_id": "43cffb45-e6c9-4f2f-96af-39106d66b7a5",
+		"name": "API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26041711",
+		"_collection_link": "https://solar-station-142587.postman.co/workspace/Projet-ODM~1dedbf76-b38d-48a7-a1f5-1dcab51a7152/collection/26041711-43cffb45-e6c9-4f2f-96af-39106d66b7a5?action=share&source=collection_link&creator=26041711"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Create user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"  pm.expect(pm.response.code).to.equal(201);",
+									"",
+									"    pm.collectionVariables.set(\"userId\", pm.response.json().id);    ",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.property('role');",
+									"    pm.expect(responseData).to.have.property('first_name');",
+									"    pm.expect(responseData).to.have.property('last_name');",
+									"    pm.expect(responseData).to.have.property('birthday');",
+									"    pm.expect(responseData).to.have.property('sexe');",
+									"    pm.expect(responseData).to.have.property('email');",
+									"    pm.expect(responseData).to.have.property('phone');",
+									"    pm.expect(responseData).to.have.property('password');",
+									"    pm.expect(responseData).to.have.property('id');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Email is in a valid format\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.email).to.match(/^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$/);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Define mock data\r",
+									"const roles = [\"guest\", \"employee\", \"admin\", \"user\"];\r",
+									"const firstNames = [\"Mark\", \"Johnny\", \"Jane\", \"Emily\", \"Michael\"];\r",
+									"const lastNames = [\"Zuckerberg\", \"Doe\", \"Smith\", \"Johnson\", \"Brown\", \"Soufflet\"];\r",
+									"const sexes = [\"male\", \"female\", \"other\"];\r",
+									"const phones = [\"+1234567890\", \"+0987654321\", \"+1122334455\", \"+5566778899\", \"+6677889900\"];\r",
+									"const countries = [\"USA\", \"Canada\", \"France\", \"Germany\", \"Australia\"];\r",
+									"const cities = [\"New York\", \"Toronto\", \"Paris\", \"Berlin\", \"Sydney\"];\r",
+									"const permissionsByRole = {\r",
+									"    guest: [\"view_content\"],\r",
+									"    employee: [\"manage_fiscality\", \"access_resources\"],\r",
+									"    admin: [\"manage_users\", \"manage_fiscality\", \"full_access\"],\r",
+									"    user: [\"access_resources\"]\r",
+									"};\r",
+									"\r",
+									"// Function to get a random item from an array\r",
+									"function getRandomItem(arr) {\r",
+									"    return arr[Math.floor(Math.random() * arr.length)];\r",
+									"}\r",
+									"\r",
+									"// Generate random mock data\r",
+									"const randomRole = getRandomItem(roles);\r",
+									"const randomFirstName = getRandomItem(firstNames);\r",
+									"const randomLastName = getRandomItem(lastNames);\r",
+									"const randomSex = getRandomItem(sexes);\r",
+									"const randomPhone = getRandomItem(phones);\r",
+									"const randomCountry = getRandomItem(countries);\r",
+									"const randomCity = getRandomItem(cities);\r",
+									"const randomEmail = `${randomFirstName.toLowerCase()}${Math.floor(Math.random() * 10000)}@gmail.com`;\r",
+									"const randomPassword = \"P@55W0RD\";\r",
+									"const randomAccountStatus = \"active\";\r",
+									"const randomPermissions = permissionsByRole[randomRole];\r",
+									"const randomBirthday = new Date(+(new Date()) - Math.floor(Math.random()*100000000000)).toISOString().split('T')[0]; // Random date in the past\r",
+									"const randomReferrerId = Math.floor(Math.random() * 100); // Random referrer ID for demonstration\r",
+									"\r",
+									"// Set mock data as global variables\r",
+									"pm.collectionVariables.set(\"role\", randomRole);\r",
+									"pm.collectionVariables.set(\"first_name\", randomFirstName);\r",
+									"pm.collectionVariables.set(\"last_name\", randomLastName);\r",
+									"pm.collectionVariables.set(\"sexe\", randomSex);\r",
+									"pm.collectionVariables.set(\"phone\", randomPhone);\r",
+									"pm.collectionVariables.set(\"country\", randomCountry);\r",
+									"pm.collectionVariables.set(\"city\", randomCity);\r",
+									"pm.collectionVariables.set(\"email\", randomEmail);\r",
+									"pm.collectionVariables.set(\"password\", randomPassword);\r",
+									"pm.collectionVariables.set(\"account_status\", randomAccountStatus);\r",
+									"pm.collectionVariables.set(\"permissions\", JSON.stringify(randomPermissions));\r",
+									"pm.collectionVariables.set(\"birthday\", randomBirthday);\r",
+									"pm.collectionVariables.set(\"referrer_id\", randomReferrerId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"{{role}}\",\r\n    \"first_name\": \"{{first_name}}\",\r\n    \"last_name\": \"{{last_name}}\",\r\n    \"birthday\": \"{{birthday}}\",\r\n    \"sexe\": \"{{sexe}}\",\r\n    \"phone\": \"{{phone}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\",\r\n    \"account_status\": \"{{account_status}}\",\r\n    \"permissions\": {{permissions}},\r\n    \"referrer_id\": \"{{referrer_id}}\",\r\n    \"country\": \"{{country}}\",\r\n    \"city\": \"{{city}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": ["{{url}}"],
+							"path": ["users"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.property('id');",
+									"    pm.expect(responseData).to.have.property('role');",
+									"    pm.expect(responseData).to.have.property('first_name');",
+									"    pm.expect(responseData).to.have.property('last_name');",
+									"    pm.expect(responseData).to.have.property('birthday');",
+									"    pm.expect(responseData).to.have.property('sexe');",
+									"    pm.expect(responseData).to.have.property('email');",
+									"    pm.expect(responseData).to.have.property('phone');",
+									"    pm.expect(responseData).to.have.property('password');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Email is in a valid format\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.email).to.be.a('string').and.to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/, \"Email should be in a valid format\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Birthday is in a valid date format\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.birthday).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/{{userId}}",
+							"host": ["{{url}}"],
+							"path": ["users", "{{userId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    responseData.forEach(user => {",
+									"        pm.expect(user).to.have.property('id');",
+									"        pm.expect(user).to.have.property('role');",
+									"        pm.expect(user).to.have.property('first_name');",
+									"        pm.expect(user).to.have.property('last_name');",
+									"        pm.expect(user).to.have.property('birthday');",
+									"        pm.expect(user).to.have.property('sexe');",
+									"        pm.expect(user).to.have.property('email');",
+									"        pm.expect(user).to.have.property('phone');",
+									"        pm.expect(user).to.have.property('password');",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Email is in a valid format\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  responseData.forEach(function(user) {",
+									"    pm.expect(user.email).to.be.a('string').and.to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/, \"Email format is not valid\");",
+									"  });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Birthday is in a valid date format\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    responseData.forEach(function(user) {",
+									"        pm.expect(user.birthday).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);",
+									"    });",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users",
+							"host": ["{{url}}"],
+							"path": ["users"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData).to.include.all.keys('id', 'role', 'first_name', 'last_name', 'birthday', 'sexe', 'email', 'phone', 'password');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Email is in a valid format\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.email).to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/, \"Email is not in valid format\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Birthday is in a valid date format\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.birthday).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"role\": \"{{role}}\",\r\n    \"first_name\": \"{{first_name}}\",\r\n    \"last_name\": \"{{last_name}}\",\r\n    \"birthday\": \"{{birthday}}\",\r\n    \"sexe\": \"{{sexe}}\",\r\n    \"phone\": \"{{phone}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\",\r\n    \"account_status\": \"{{account_status}}\",\r\n    \"permissions\": {{permissions}},\r\n    \"referrer_id\": \"{{referrer_id}}\",\r\n    \"country\": \"{{country}}\",\r\n    \"city\": \"{{city}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/{{userId}}",
+							"host": ["{{url}}"],
+							"path": ["users", "{{userId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Message is a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Message should not be empty\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/{{userId}}",
+							"host": ["{{url}}"],
+							"path": ["users", "{{userId}}"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MEETING",
+			"item": [
+				{
+					"name": "address",
+					"item": [
+						{
+							"name": "Create address",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"ID is present\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.id).to.be.not.NaN;\r",
+											"\r",
+											"pm.collectionVariables.set(\"id_address\", jsonData.id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"street\": \"404 Cedar Court\",\r\n  \"city\": \"Smallville\",\r\n  \"state\": \"KS\",\r\n  \"zip\": \"67524\",\r\n  \"country\": \"USA\",\r\n  \"num\": 707,\r\n  \"timezone\": \"GMT-06:00\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/addresses",
+									"host": ["{{url}}"],
+									"path": ["addresses"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get address",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"  });",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/addresses/{{id_address}}",
+									"host": ["{{url}}"],
+									"path": ["addresses", "{{id_address}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get address",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('array');",
+											"    ",
+											"    responseData.forEach(function(address) {",
+											"        pm.expect(address).to.include.all.keys('id', 'city', 'zip', 'street', 'num', 'country', 'state', 'timezone');",
+											"    });",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/addresses",
+									"host": ["{{url}}"],
+									"path": ["addresses"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch address",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData).to.have.property('id');",
+											"    pm.expect(responseData).to.have.property('city');",
+											"    pm.expect(responseData).to.have.property('zip');",
+											"    pm.expect(responseData).to.have.property('street');",
+											"    pm.expect(responseData).to.have.property('num');",
+											"    pm.expect(responseData).to.have.property('country');",
+											"    pm.expect(responseData).to.have.property('state');",
+											"    pm.expect(responseData).to.have.property('timezone');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Id is a non-negative integer\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.id).to.exist.and.to.be.a('number').and.to.satisfy((id) => id >= 0, \"Id should be a non-negative integer\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Num is a non-negative integer\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.num).to.exist.and.to.be.a('number').and.to.satisfy((num) => num >= 0, \"Num should be a non-negative integer\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Timezone is in a valid format\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData).to.be.an('object');",
+											"  pm.expect(responseData.timezone).to.match(/[A-Za-z_\\/]+/);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"city\": \"Springfield\",\r\n    \"zip\": \"62701\",\r\n    \"street\": \"123 Main St\",\r\n    \"num\": 102,\r\n    \"country\": \"USA\",\r\n    \"state\": \"IL\",\r\n    \"timezone\": \"GMT-05:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/addresses/{{id_address}}",
+									"host": ["{{url}}"],
+									"path": ["addresses", "{{id_address}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete address",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/addresses/{{id_address}}",
+									"host": ["{{url}}"],
+									"path": ["addresses", "{{id_address}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "building",
+					"item": [
+						{
+							"name": "Create building",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_building\", jsonData.id);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields - id, name, address_id, and floor\", function () {",
+											"  const responseData = pm.response.json();",
+											"",
+											"  pm.expect(responseData).to.be.an('object');",
+											"  pm.expect(responseData).to.have.property('id');",
+											"  pm.expect(responseData).to.have.property('name');",
+											"  pm.expect(responseData).to.have.property('address_id');",
+											"  pm.expect(responseData).to.have.property('floor');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Name is a non-empty string\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData).to.be.an('object');",
+											"  pm.expect(responseData.name).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Name should not be empty\");",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// Function to get a random item from an array\r",
+											"function getRandomItem(arr) {\r",
+											"    return arr[Math.floor(Math.random() * arr.length)];\r",
+											"}\r",
+											"\r",
+											"const buildingNames = [\r",
+											"    \"Corporate Headquarters\",\r",
+											"    \"Tech Hub\",\r",
+											"    \"Innovation Center\",\r",
+											"    \"Research Lab\",\r",
+											"    \"Executive Suites\",\r",
+											"    \"Neven Tower\",\r",
+											"    \"Janin Plaza\",\r",
+											"    \"Vanande Center\"\r",
+											"];const floorOptions = [\"1\", \"2\", \"3\", \"4\", \"5\"];\r",
+											"const statuses = [\"Available\", \"Occupied\", \"Under Construction\"];\r",
+											"\r",
+											"// Generate random building data\r",
+											"const randomBuildingName = getRandomItem(buildingNames);\r",
+											"const randomAddressId = Math.floor(Math.random() * 100) + 1; // Random address ID between 1 and 100\r",
+											"const randomFloor = getRandomItem(floorOptions);\r",
+											"const randomStatus = getRandomItem(statuses);\r",
+											"\r",
+											"// Set building data as collectionVariables variables\r",
+											"pm.collectionVariables.set(\"name\", randomBuildingName);\r",
+											"pm.collectionVariables.set(\"address_id\", randomAddressId);\r",
+											"pm.collectionVariables.set(\"floor\", randomFloor);\r",
+											"pm.collectionVariables.set(\"status\", randomStatus);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{name}}\",\r\n    \"address_id\": {{address_id}},\r\n    \"floor\": \"{{floor}}\",\r\n    \"status\": \"{{status}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/buildings",
+									"host": ["{{url}}"],
+									"path": ["buildings"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get building",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData).to.have.property('id');",
+											"    pm.expect(responseData).to.have.property('name');",
+											"    pm.expect(responseData).to.have.property('address_id');",
+											"    pm.expect(responseData).to.have.property('floor');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Name is a non-empty string\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.name).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Name should not be empty\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Address_id is a non-negative integer\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.address_id).to.exist;",
+											"    pm.expect(responseData.address_id).to.be.a('number').above(-1);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Floor is a non-empty string\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData).to.be.an('object');",
+											"  pm.expect(responseData.floor).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/buildings/{{id_building}}",
+									"host": ["{{url}}"],
+									"path": ["buildings", "{{id_building}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get building",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields - id, name, address_id, and floor\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+											"    responseData.forEach(function(building) {",
+											"        pm.expect(building).to.have.property('id');",
+											"        pm.expect(building).to.have.property('name');",
+											"        pm.expect(building).to.have.property('address_id');",
+											"        pm.expect(building).to.have.property('floor');",
+											"    });",
+											"});",
+											"",
+											"",
+											"pm.test(\"Name is a non-empty string\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData).to.be.an('array');",
+											"  responseData.forEach(function(building) {",
+											"    pm.expect(building.name).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Name should not be empty\");",
+											"  });",
+											"});",
+											"",
+											"",
+											"pm.test(\"Address_id is a non-negative integer\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('array');",
+											"    responseData.forEach(function(building) {",
+											"        pm.expect(building.address_id).to.be.a('number').and.to.satisfy((val) => val >= 0, \"Address_id must be a non-negative integer\");",
+											"    });",
+											"});",
+											"",
+											"",
+											"pm.test(\"Floor is a non-empty string\", function () {",
+											"  const responseData = pm.response.json();",
+											"",
+											"  pm.expect(responseData).to.be.an('array');",
+											"  responseData.forEach(function(building) {",
+											"    pm.expect(building.floor).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Floor should not be empty\");",
+											"  });",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/buildings",
+									"host": ["{{url}}"],
+									"path": ["buildings"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch building",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData).to.have.property('id');",
+											"    pm.expect(responseData).to.have.property('name');",
+											"    pm.expect(responseData).to.have.property('address_id');",
+											"    pm.expect(responseData).to.have.property('floor');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Name is a non-empty string\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.name).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Name should not be empty\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Address_id is a positive integer\", function () {",
+											"    const responseData = pm.response.json();",
+											"",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.address_id).to.exist.and.to.be.a('number').and.to.be.above(0);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Floor is a non-empty string\", function () {",
+											"  const responseData = pm.response.json();",
+											"  pm.expect(responseData.floor).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{name}}\",\r\n    \"address_id\": {{address_id}},\r\n    \"floor\": \"{{floor}}\",\r\n    \"status\": \"{{status}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/buildings/{{id_building}}",
+									"host": ["{{url}}"],
+									"path": ["buildings", "{{id_building}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete building",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/buildings/{{id_building}}",
+									"host": ["{{url}}"],
+									"path": ["buildings", "{{id_building}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "location",
+					"item": [
+						{
+							"name": "Create location",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_location\", jsonData.id);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// Define mock data arrays\r",
+											"const fields = [\"room_id\", \"building_id\", \"address_id\"];\r",
+											"\r",
+											"// Function to get a random item from an array\r",
+											"function getRandomItem(arr) {\r",
+											"    return arr[Math.floor(Math.random() * arr.length)];\r",
+											"}\r",
+											"\r",
+											"// Generate random mock data\r",
+											"const randomField = getRandomItem(fields);\r",
+											"const randomValue = Math.floor(Math.random() * 100) + 1; // Random number between 1 and 100\r",
+											"\r",
+											"// Set mock data as collection variables\r",
+											"pm.collectionVariables.set(\"random_field\", randomField);\r",
+											"pm.collectionVariables.set(\"random_value\", randomValue);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"{{random_field}}\": {{random_value}}\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/locations",
+									"host": ["{{url}}"],
+									"path": ["locations"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get location",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData).to.have.property('id');",
+											"    pm.expect(responseData).to.have.property('room_id');",
+											"    pm.expect(responseData).to.have.property('address_id');",
+											"    pm.expect(responseData).to.have.property('building_id');",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 800ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/locations/{{id_location}}",
+									"host": ["{{url}}"],
+									"path": ["locations", "{{id_location}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get location",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required Content-Type header with value application/json\", function () {",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"  pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Validate the schema of the response body\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('array');",
+											"    responseData.forEach(function(location) {",
+											"        pm.expect(location).to.have.property('id');",
+											"        pm.expect(location).to.have.property('room_id');",
+											"        pm.expect(location).to.have.property('building_id');",
+											"        pm.expect(location).to.have.property('address_id');",
+											"    });",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/locations",
+									"host": ["{{url}}"],
+									"path": ["locations"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch location",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Content-Type header is application/json\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Presence of id, room_id, building_id, and address_id in the response schema\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData).to.have.property('id');",
+											"    pm.expect(responseData).to.have.property('room_id');",
+											"    pm.expect(responseData).to.have.property('building_id');",
+											"    pm.expect(responseData).to.have.property('address_id');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"  pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// Define mock data arrays\r",
+											"const fields = [\"room_id\", \"building_id\", \"address_id\"];\r",
+											"\r",
+											"// Function to get a random item from an array\r",
+											"function getRandomItem(arr) {\r",
+											"    return arr[Math.floor(Math.random() * arr.length)];\r",
+											"}\r",
+											"\r",
+											"// Generate random mock data\r",
+											"const randomField = getRandomItem(fields);\r",
+											"const randomValue = Math.floor(Math.random() * 100) + 1; // Random number between 1 and 100\r",
+											"\r",
+											"// Set mock data as collection variables\r",
+											"pm.collectionVariables.set(\"random_field\", randomField);\r",
+											"pm.collectionVariables.set(\"random_value\", randomValue);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"{{random_field}}\": {{random_value}}\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/locations/{{id_location}}",
+									"host": ["{{url}}"],
+									"path": ["locations", "{{id_location}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete location",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/locations/{{id_location}}",
+									"host": ["{{url}}"],
+									"path": ["locations", "{{id_location}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "room",
+					"item": [
+						{
+							"name": "Create room",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"ID is present\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.id).to.be.not.NaN;\r",
+											"\r",
+											"pm.collectionVariables.set(\"id_room\", jsonData.id);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// Define mock data\r",
+											"const roomNames = [\r",
+											"    \"Conference Room A\",\r",
+											"    \"Meeting Room B\",\r",
+											"    \"Training Room C\",\r",
+											"    \"Boardroom D\",\r",
+											"    \"Presentation Room E\",\r",
+											"    \"Neven Hall\",\r",
+											"    \"Janin Room\",\r",
+											"    \"Vanande Studio\"\r",
+											"];\r",
+											"\r",
+											"const capacities = [20, 30, 40, 50, 60, 70, 80, 90, 100];\r",
+											"const statuses = [\"Available\", \"Occupied\", \"Under Maintenance\"];\r",
+											"const equipmentOptions = [\r",
+											"    \"Projector\",\r",
+											"    \"Whiteboard\",\r",
+											"    \"Wi-Fi\",\r",
+											"    \"Speaker System\",\r",
+											"    \"Video Conferencing Equipment\",\r",
+											"    \"Printer\",\r",
+											"    \"Scanner\"\r",
+											"];\r",
+											"\r",
+											"// Function to get a random item from an array\r",
+											"function getRandomItem(arr) {\r",
+											"    return arr[Math.floor(Math.random() * arr.length)];\r",
+											"}\r",
+											"\r",
+											"// Function to generate random equipment without duplicates\r",
+											"function generateRandomEquipment(options, maxCount) {\r",
+											"    const equipment = [];\r",
+											"    const remainingOptions = [...options]; // Create a copy to avoid modifying the original array\r",
+											"\r",
+											"    for (let i = 0; i < maxCount; i++) {\r",
+											"        if (remainingOptions.length === 0) break;\r",
+											"        const randomIndex = Math.floor(Math.random() * remainingOptions.length);\r",
+											"        const selectedEquipment = remainingOptions.splice(randomIndex, 1)[0];\r",
+											"        equipment.push(selectedEquipment);\r",
+											"    }\r",
+											"\r",
+											"    return equipment;\r",
+											"}\r",
+											"\r",
+											"// Generate random room data\r",
+											"function generateRandomRoomData() {\r",
+											"    const randomRoomName = getRandomItem(roomNames);\r",
+											"    const randomCapacity = getRandomItem(capacities);\r",
+											"    const randomBuildingId = Math.floor(Math.random() * 100) + 1; // Random building ID between 1 and 100\r",
+											"    const randomImage = `https://odm.com/images/${randomRoomName.replace(/\\s+/g, '-').toLowerCase()}.jpg`;\r",
+											"    const randomStatus = getRandomItem(statuses);\r",
+											"    const randomEquipment = generateRandomEquipment(equipmentOptions, Math.floor(Math.random() * 5) + 1);\r",
+											"\r",
+											"    return {\r",
+											"        name: randomRoomName,\r",
+											"        capacity: randomCapacity,\r",
+											"        image: randomImage,\r",
+											"        building_id: randomBuildingId,\r",
+											"        equipment: randomEquipment,\r",
+											"        status: randomStatus\r",
+											"    };\r",
+											"}\r",
+											"\r",
+											"// Execute to set room data as collectionVariables variables\r",
+											"const roomData = generateRandomRoomData();\r",
+											"pm.collectionVariables.set(\"name\", roomData.name);\r",
+											"pm.collectionVariables.set(\"capacity\", roomData.capacity);\r",
+											"pm.collectionVariables.set(\"image\", roomData.image);\r",
+											"pm.collectionVariables.set(\"building_id\", roomData.building_id);\r",
+											"pm.collectionVariables.set(\"equipment\", JSON.stringify(roomData.equipment));\r",
+											"pm.collectionVariables.set(\"status\", roomData.status);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{name}}\",\r\n    \"capacity\": {{capacity}},\r\n    \"image\": \"{{image}}\",\r\n    \"building_id\": {{building_id}},\r\n    \"equipment\": {{equipment}},\r\n    \"status\": \"{{status}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/rooms",
+									"host": ["{{url}}"],
+									"path": ["rooms"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get room",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"  });",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/rooms/{{id_room}}",
+									"host": ["{{url}}"],
+									"path": ["rooms", "{{id_room}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Gets room",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/rooms",
+									"host": ["{{url}}"],
+									"path": ["rooms"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch room",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Id is a non-negative integer\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.id).to.exist.and.to.be.a('number').and.to.satisfy((id) => id >= 0, \"Id should be a non-negative integer\");",
+											"});",
+											"",
+											"",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{name}}\",\r\n    \"capacity\": {{capacity}},\r\n    \"image\": \"{{image}}\",\r\n    \"building_id\": {{building_id}},\r\n    \"equipment\": {{equipment}},\r\n    \"status\": \"{{status}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/rooms/{{id_room}}",
+									"host": ["{{url}}"],
+									"path": ["rooms", "{{id_room}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete room",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/rooms/{{id_room}}",
+									"host": ["{{url}}"],
+									"path": ["rooms", "{{id_room}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "meeting",
+					"item": [
+						{
+							"name": "Create meeting",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"  pm.expect(pm.response.code).to.equal(201);",
+											"",
+											"    pm.collectionVariables.set(\"id_meeting\", pm.response.json().id);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"subject\": \"Team Meeting\",\r\n  \"date\": \"2024-06-15T00:00:00\",\r\n  \"status\": \"Scheduled\",\r\n  \"start_time\": \"2024-06-15T10:00:00\",\r\n  \"end_time\": \"2024-06-15T11:00:00\",\r\n  \"location_id\": 1,\r\n  \"organizer_id\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/meetings",
+									"host": ["{{url}}"],
+									"path": ["meetings"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get meeting",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/meetings/{{id_meeting}}",
+									"host": ["{{url}}"],
+									"path": ["meetings", "{{id_meeting}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get meeting",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/meetings",
+									"host": ["{{url}}"],
+									"path": ["meetings"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch meeting",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"subject\": \"Team Meeting\",\r\n    \"date\": \"2024-06-15\",\r\n    \"status\": \"Scheduled\",\r\n    \"start_time\": \"2024-07-01T10:00:00Z\",\r\n    \"end_time\": \"2024-07-01T10:00:00Z\",\r\n    \"location_id\": 1,\r\n    \"organizer_id\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/meetings/{{id_meeting}}",
+									"host": ["{{url}}"],
+									"path": ["meetings", "{{id_meeting}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete meeting",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/meetings/{{id_meeting}}",
+									"host": ["{{url}}"],
+									"path": ["meetings", "{{id_meeting}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "EVENT",
+			"item": [
+				{
+					"name": "furnitureCategory",
+					"item": [
+						{
+							"name": "Create furniture",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"ID is present\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.id).to.not.be.NaN;\r",
+											"\r",
+											"pm.collectionVariables.set(\"id_furniturecategorys\", jsonData.id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Accessories\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/furniturecategorys",
+									"host": ["{{url}}"],
+									"path": ["furniturecategorys"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get furniture",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"  });",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/furniturecategorys/{{id_furniturecategorys}}",
+									"host": ["{{url}}"],
+									"path": ["furniturecategorys", "{{id_furniturecategorys}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Gets furniture",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/furniturecategorys",
+									"host": ["{{url}}"],
+									"path": ["furniturecategorys"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch furniture",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Id is a non-negative integer\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.id).to.exist.and.to.be.a('number').and.to.satisfy((id) => id >= 0, \"Id should be a non-negative integer\");",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Divers\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/furniturecategorys/{{id_furniturecategorys}}",
+									"host": ["{{url}}"],
+									"path": ["furniturecategorys", "{{id_furniturecategorys}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete furniture",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully deleted\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/furniturecategorys/{{id_furniturecategorys}}",
+									"host": ["{{url}}"],
+									"path": ["furniturecategorys", "{{id_furniturecategorys}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ressourceCategory",
+					"item": [
+						{
+							"name": "Create ressource category",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"ID is present\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.id).to.not.be.NaN;\r",
+											"\r",
+											"pm.collectionVariables.set(\"id_ressourceCategory\", jsonData.id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Accessories\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/ressourceCategories",
+									"host": ["{{url}}"],
+									"path": ["ressourceCategories"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get ressource category",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"  });",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ressourceCategories/{{id_ressourceCategory}}",
+									"host": ["{{url}}"],
+									"path": ["ressourceCategories", "{{id_ressourceCategory}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Gets ressource category",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ressourceCategories",
+									"host": ["{{url}}"],
+									"path": ["ressourceCategories"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch ressource category",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Id is a non-negative integer\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.id).to.exist.and.to.be.a('number').and.to.satisfy((id) => id >= 0, \"Id should be a non-negative integer\");",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Divers\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/ressourceCategories/{{id_ressourceCategory}}",
+									"host": ["{{url}}"],
+									"path": ["ressourceCategories", "{{id_ressourceCategory}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete ressource category",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully deleted\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ressourceCategories/{{id_ressourceCategory}}",
+									"host": ["{{url}}"],
+									"path": ["ressourceCategories", "{{id_ressourceCategory}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "furniture",
+					"item": [
+						{
+							"name": "Create furniture",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"ID is present\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.id).to.not.be.NaN;\r",
+											"\r",
+											"pm.collectionVariables.set(\"id_furniture\", jsonData.id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"category_id\": 1,\r\n    \"name\": \"Office Desk\",\r\n    \"storage\": \"Main Storage\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/furnitures",
+									"host": ["{{url}}"],
+									"path": ["furnitures"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get furniture",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"  });",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/furnitures/{{id_furniture}}",
+									"host": ["{{url}}"],
+									"path": ["furnitures", "{{id_furniture}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Gets furniture",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/furnitures",
+									"host": ["{{url}}"],
+									"path": ["furnitures"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch furniture",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Id is a non-negative integer\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.id).to.exist.and.to.be.a('number').and.to.satisfy((id) => id >= 0, \"Id should be a non-negative integer\");",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"category_id\": 2,\r\n    \"name\": \"Office Desk\",\r\n    \"storage\": \"Main Storage\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/furnitures/{{id_furniture}}",
+									"host": ["{{url}}"],
+									"path": ["furnitures", "{{id_furniture}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete furniture",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully deleted\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/furnitures/{{id_furniture}}",
+									"host": ["{{url}}"],
+									"path": ["furnitures", "{{id_furniture}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ressource",
+					"item": [
+						{
+							"name": "Create ressource",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"ID is present\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.id).to.not.be.NaN;\r",
+											"\r",
+											"pm.collectionVariables.set(\"id_ressource\", jsonData.id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// Define mock data\r",
+											"const categoryIds = [1, 2, 3, 4, 5];\r",
+											"const names = [\"Resource A\", \"Resource B\", \"Resource C\", \"Resource D\"];\r",
+											"const storages = [\"Cloud\", \"Local Server\", \"External Drive\"];\r",
+											"const types = [\"Document\", \"Image\", \"Video\", \"Audio\"];\r",
+											"const details = [\"Details about Resource A\", \"Details about Resource B\", \"Details about Resource C\"];\r",
+											"const costs = [100, 200, 300, 400, 500];\r",
+											"\r",
+											"// Function to get a random item from an array\r",
+											"function getRandomItem(arr) {\r",
+											"    return arr[Math.floor(Math.random() * arr.length)];\r",
+											"}\r",
+											"\r",
+											"// Generate random mock data\r",
+											"const randomCategoryId = getRandomItem(categoryIds);\r",
+											"const randomName = getRandomItem(names);\r",
+											"const randomStorage = getRandomItem(storages);\r",
+											"const randomType = getRandomItem(types);\r",
+											"const randomDetails = getRandomItem(details);\r",
+											"const randomCost = getRandomItem(costs);\r",
+											"\r",
+											"// Set mock data as environment variables\r",
+											"pm.collectionVariables.set(\"category_id\", randomCategoryId);\r",
+											"pm.collectionVariables.set(\"name\", randomName);\r",
+											"pm.collectionVariables.set(\"storage\", randomStorage);\r",
+											"pm.collectionVariables.set(\"type\", randomType);\r",
+											"pm.collectionVariables.set(\"details\", randomDetails);\r",
+											"pm.collectionVariables.set(\"cost\", randomCost);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"category_id\": {{category_id}},\r\n    \"name\": \"{{name}}\",\r\n    \"storage\": \"{{storage}}\",\r\n    \"type\": \"{{type}}\",\r\n    \"details\": \"{{details}}\",\r\n    \"cost\": {{cost}}\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/ressources",
+									"host": ["{{url}}"],
+									"path": ["ressources"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get ressource",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"  });",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ressources/{{id_ressource}}",
+									"host": ["{{url}}"],
+									"path": ["ressources", "{{id_ressource}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Gets ressource",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ressources",
+									"host": ["{{url}}"],
+									"path": ["ressources"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch ressource",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Id is a non-negative integer\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.id).to.exist.and.to.be.a('number').and.to.satisfy((id) => id >= 0, \"Id should be a non-negative integer\");",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"category_id\": {{category_id}},\r\n    \"name\": \"{{name}}\",\r\n    \"storage\": \"{{storage}}\",\r\n    \"type\": \"{{type}}\",\r\n    \"details\": \"{{details}}\",\r\n    \"cost\": {{cost}}\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/ressources/{{id_ressource}}",
+									"host": ["{{url}}"],
+									"path": ["ressources", "{{id_ressource}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete ressource",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully deleted\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ressources/{{id_ressource}}",
+									"host": ["{{url}}"],
+									"path": ["ressources", "{{id_ressource}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "rent",
+					"item": [
+						{
+							"name": "Create rent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"ID is present\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.id).to.not.be.NaN;\r",
+											"\r",
+											"pm.collectionVariables.set(\"id_rent\", jsonData.id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"furniture_id\": 1,\r\n    \"event_id\": 2,\r\n    \"cost\": 50,\r\n    \"quantity\": 10\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/rents",
+									"host": ["{{url}}"],
+									"path": ["rents"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get rent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"  });",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/rents/{{id_rent}}",
+									"host": ["{{url}}"],
+									"path": ["rents", "{{id_rent}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Gets rent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/rents",
+									"host": ["{{url}}"],
+									"path": ["rents"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch rent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Id is a non-negative integer\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.id).to.exist.and.to.be.a('number').and.to.satisfy((id) => id >= 0, \"Id should be a non-negative integer\");",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"furniture_id\": 1,\r\n    \"event_id\": 2,\r\n    \"cost\": 50,\r\n    \"quantity\": 100\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/rents/{{id_rent}}",
+									"host": ["{{url}}"],
+									"path": ["rents", "{{id_rent}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete rent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully deleted\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/rents/{{id_rent}}",
+									"host": ["{{url}}"],
+									"path": ["rents", "{{id_rent}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "event",
+					"item": [
+						{
+							"name": "Create event",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"ID is present\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.id).to.not.be.NaN;\r",
+											"\r",
+											"pm.collectionVariables.set(\"id_event\", jsonData.id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Blockchain Education Seminar\",\r\n    \"description\": \"A seminar to educate about the fundamentals and applications of blockchain technology.\",\r\n    \"image\": \"https://example.com/images/seminar.jpg\",\r\n    \"location\": \"1234 Blockchain Blvd, Crypto City\",\r\n    \"date_start\": \"2024-07-01T10:00:00Z\",\r\n    \"date_end\": \"2024-07-01T16:00:00Z\",\r\n    \"cost\": 100,\r\n    \"status\": \"planned\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/events",
+									"host": ["{{url}}"],
+									"path": ["events"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get event",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"  });",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/events/{{id_event}}",
+									"host": ["{{url}}"],
+									"path": ["events", "{{id_event}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Gets event",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/events",
+									"host": ["{{url}}"],
+									"path": ["events"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch event",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Id is a non-negative integer\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.id).to.exist.and.to.be.a('number').and.to.satisfy((id) => id >= 0, \"Id should be a non-negative integer\");",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Blockchain Education Seminar\",\r\n    \"description\": \"A seminar to educate about the fundamentals and applications of blockchain technology.\",\r\n    \"image\": \"https://example.com/images/seminar.jpg\",\r\n    \"location\": \"1234 Blockchain Blvd, Crypto City\",\r\n    \"date_start\": \"2024-07-01T10:00:00Z\",\r\n    \"date_end\": \"2024-07-01T16:00:00Z\",\r\n    \"cost\": 1500,\r\n    \"status\": \"planned\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/events/{{id_event}}",
+									"host": ["{{url}}"],
+									"path": ["events", "{{id_event}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete event",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully deleted\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/events/{{id_event}}",
+									"host": ["{{url}}"],
+									"path": ["events", "{{id_event}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "activity",
+					"item": [
+						{
+							"name": "Create activity",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"ID is present\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.id).to.not.be.NaN;\r",
+											"\r",
+											"pm.collectionVariables.set(\"id_activity\", jsonData.id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// Define mock data\r",
+											"const titles = [\"Conference\", \"Workshop\", \"Seminar\", \"Training\", \"Webinar\"];\r",
+											"const descriptions = [\"This is a conference about...\", \"Join us for an informative workshop on...\", \"Seminar discussing the latest trends in...\", \"Training session covering essential topics on...\", \"Webinar focusing on the future of...\"];\r",
+											"const images = [\"https://example.com/image1.jpg\", \"https://example.com/image2.jpg\", \"https://example.com/image3.jpg\"];\r",
+											"const statuses = [\"active\", \"inactive\", \"pending\"];\r",
+											"const types = [\"online\", \"offline\", \"hybrid\"];\r",
+											"\r",
+											"// Function to get a random item from an array\r",
+											"function getRandomItem(arr) {\r",
+											"    return arr[Math.floor(Math.random() * arr.length)];\r",
+											"}\r",
+											"\r",
+											"// Generate random mock data\r",
+											"const randomTitle = getRandomItem(titles);\r",
+											"const randomDescription = getRandomItem(descriptions);\r",
+											"const randomImage = getRandomItem(images);\r",
+											"const randomDateStart = new Date().toISOString(); // Replace with your desired date format\r",
+											"const randomDateEnd = new Date(Date.now() + 86400000).toISOString(); // End date is one day ahead of start date\r",
+											"const randomStatus = getRandomItem(statuses);\r",
+											"const randomType = getRandomItem(types);\r",
+											"const randomOrganizerId = Math.floor(Math.random() * 100); // Replace with actual organizer ID\r",
+											"const randomLocationId = Math.floor(Math.random() * 100); // Replace with actual location ID\r",
+											"\r",
+											"// Set mock data as collectionVariables variables\r",
+											"pm.collectionVariables.set(\"title\", randomTitle);\r",
+											"pm.collectionVariables.set(\"description\", randomDescription);\r",
+											"pm.collectionVariables.set(\"image\", randomImage);\r",
+											"pm.collectionVariables.set(\"date_start\", randomDateStart);\r",
+											"pm.collectionVariables.set(\"date_end\", randomDateEnd);\r",
+											"pm.collectionVariables.set(\"status\", randomStatus);\r",
+											"pm.collectionVariables.set(\"type\", randomType);\r",
+											"pm.collectionVariables.set(\"organizer_id\", randomOrganizerId);\r",
+											"pm.collectionVariables.set(\"location_id\", randomLocationId);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"{{title}}\",\r\n    \"description\": \"{{description}}\",\r\n    \"image\": \"{{image}}\",\r\n    \"date_start\": \"{{date_start}}\",\r\n    \"date_end\": \"{{date_end}}\",\r\n    \"status\": \"{{status}}\",\r\n    \"type\": \"{{type}}\",\r\n    \"organizer_id\": {{organizer_id}},\r\n    \"location_id\": {{location_id}}\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/activities",
+									"host": ["{{url}}"],
+									"path": ["activities"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get activity",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"  });",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/activities/{{id_activity}}",
+									"host": ["{{url}}"],
+									"path": ["activities", "{{id_activity}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Gets activity",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/activities",
+									"host": ["{{url}}"],
+									"path": ["activities"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch event",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Id is a non-negative integer\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.id).to.exist.and.to.be.a('number').and.to.satisfy((id) => id >= 0, \"Id should be a non-negative integer\");",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"{{title}}\",\r\n    \"description\": \"{{description}}\",\r\n    \"image\": \"{{image}}\",\r\n    \"date_start\": \"{{date_start}}\",\r\n    \"date_end\": \"{{date_end}}\",\r\n    \"status\": \"{{status}}\",\r\n    \"type\": \"{{type}}\",\r\n    \"organizer_id\": {{organizer_id}},\r\n    \"location_id\": {{location_id}}\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/activities/{{id_activity}}",
+									"host": ["{{url}}"],
+									"path": ["activities", "{{id_activity}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete event",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully deleted\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/activities/{{id_activity}}",
+									"host": ["{{url}}"],
+									"path": ["activities", "{{id_activity}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "use",
+					"item": [
+						{
+							"name": "Create use",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"ID is present\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.id).to.not.be.NaN;\r",
+											"\r",
+											"pm.collectionVariables.set(\"id_use\", jsonData.id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// Define mock data arrays\r",
+											"const activityIds = [1, 2, 3, 4, 5];\r",
+											"const ressourceIds = [10, 20, 30, 40, 50];\r",
+											"\r",
+											"// Function to get a random item from an array\r",
+											"function getRandomItem(arr) {\r",
+											"    return arr[Math.floor(Math.random() * arr.length)];\r",
+											"}\r",
+											"\r",
+											"// Generate random mock data\r",
+											"const randomActivityId = getRandomItem(activityIds);\r",
+											"const randomRessourceId = getRandomItem(ressourceIds);\r",
+											"\r",
+											"// Set mock data as collection variables\r",
+											"pm.collectionVariables.set(\"activity_id\", randomActivityId);\r",
+											"pm.collectionVariables.set(\"ressource_id\", randomRessourceId);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"activity_id\": \"{{activity_id}}\",\r\n    \"ressource_id\": \"{{ressource_id}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/uses",
+									"host": ["{{url}}"],
+									"path": ["uses"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get use",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"  });",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/uses/{{id_use}}",
+									"host": ["{{url}}"],
+									"path": ["uses", "{{id_use}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Gets use",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/uses",
+									"host": ["{{url}}"],
+									"path": ["uses"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch use",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Id is a non-negative integer\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.id).to.exist.and.to.be.a('number').and.to.satisfy((id) => id >= 0, \"Id should be a non-negative integer\");",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"activity_id\": \"{{activity_id}}\",\r\n    \"ressource_id\": \"{{ressource_id}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/uses/{{id_use}}",
+									"host": ["{{url}}"],
+									"path": ["uses", "{{id_use}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete event",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully deleted\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/uses/{{id_use}}",
+									"host": ["{{url}}"],
+									"path": ["uses", "{{id_use}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "participate",
+					"item": [
+						{
+							"name": "Create participate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"ID is present\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.id).to.be.not.NaN;\r",
+											"\r",
+											"pm.collectionVariables.set(\"id_participate\", jsonData.id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// Define mock data\r",
+											"const roles = [\"participant\", \"organizer\", \"speaker\", \"attendee\"];\r",
+											"const user_ids = [1, 2, 3, 4, 5];\r",
+											"const activity_ids = [101, 102, 103, 104, 105];\r",
+											"\r",
+											"// Function to get a random item from an array\r",
+											"function getRandomItem(arr) {\r",
+											"    return arr[Math.floor(Math.random() * arr.length)];\r",
+											"}\r",
+											"\r",
+											"// Generate random mock data\r",
+											"const randomUserId = getRandomItem(user_ids);\r",
+											"const randomActivityId = getRandomItem(activity_ids);\r",
+											"const randomRole = getRandomItem(roles);\r",
+											"const randomPresent = Math.random() < 0.5; // Random boolean\r",
+											"\r",
+											"// Set mock data as collection variables\r",
+											"pm.collectionVariables.set(\"user_id\", randomUserId);\r",
+											"pm.collectionVariables.set(\"activity_id\", randomActivityId);\r",
+											"pm.collectionVariables.set(\"role\", randomRole);\r",
+											"pm.collectionVariables.set(\"present\", randomPresent);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": {{user_id}},\r\n    \"activity_id\": {{activity_id}},\r\n    \"role\": \"{{role}}\",\r\n    \"present\": {{present}}\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/participates",
+									"host": ["{{url}}"],
+									"path": ["participates"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get  participate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"  });",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/participates/{{id_participate}}",
+									"host": ["{{url}}"],
+									"path": ["participates", "{{id_participate}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get  participates",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/participates",
+									"host": ["{{url}}"],
+									"path": ["participates"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch participate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": {{user_id}},\r\n    \"activity_id\": {{activity_id}},\r\n    \"role\": \"{{role}}\",\r\n    \"present\": {{present}}\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/participates/{{id_participate}}",
+									"host": ["{{url}}"],
+									"path": ["participates", "{{id_participate}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete  participate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {\r",
+											"    pm.expect(pm.response.code).to.equal(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response has the required fields\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseData).to.be.an('object');\r",
+											"    pm.expect(responseData.message).to.exist.and.to.be.a('string');\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/participates/{{id_participate}}",
+									"host": ["{{url}}"],
+									"path": ["participates", "{{id_participate}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ECONOMIC",
+			"item": [
+				{
+					"name": "donation",
+					"item": [
+						{
+							"name": "Create donation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_donations\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"transaction_id\": 123,\r\n  \"type\": \"crypto\",\r\n  \"amount\": 100,\r\n  \"date\": \"2024-06-07T10:00:00Z\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/donations",
+									"host": ["{{url}}"],
+									"path": ["donations"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get donation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/donations/{{id_donations}}",
+									"host": ["{{url}}"],
+									"path": ["donations", "{{id_donations}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get donation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/donations",
+									"host": ["{{url}}"],
+									"path": ["donations"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch donation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"transaction_id\": 1,\r\n  \"type\": \"crypto\",\r\n  \"amount\": 200,\r\n  \"date\": \"2024-06-07T10:00:00Z\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/donations/{{id_donations}}",
+									"host": ["{{url}}"],
+									"path": ["donations", "{{id_donations}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete donation",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/donations/3",
+									"host": ["{{url}}"],
+									"path": ["donations", "3"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "membershipcard",
+					"item": [
+						{
+							"name": "Create membershipcard",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_membershipcards\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"transaction_id\": 1,\r\n  \"status\": \"active\",\r\n  \"type\": \"premium\",\r\n  \"date_received\": \"2024-06-07\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/membershipcards",
+									"host": ["{{url}}"],
+									"path": ["membershipcards"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get membershipcard",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/membershipcards/{{id_membershipcards}}",
+									"host": ["{{url}}"],
+									"path": ["membershipcards", "{{id_membershipcards}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get membershipcard",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/membershipcards",
+									"host": ["{{url}}"],
+									"path": ["membershipcards"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch membershipcard",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"transaction_id\": 1,\r\n  \"status\": \"active\",\r\n  \"type\": \"premium\",\r\n  \"date_received\": \"2024-06-07\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/membershipcards/{{id_membershipcards}}",
+									"host": ["{{url}}"],
+									"path": ["membershipcards", "{{id_membershipcards}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete membershipcard",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/membershipcards/{{id_membershipcards}}",
+									"host": ["{{url}}"],
+									"path": ["membershipcards", "{{id_membershipcards}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "paymentmethods",
+					"item": [
+						{
+							"name": "Create paymentmethods",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_paymentmethods\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"transaction_id\": 789,\r\n  \"method\": \"credit_card\",\r\n  \"details\": \"VISA **** 1234\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/paymentmethods",
+									"host": ["{{url}}"],
+									"path": ["paymentmethods"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get paymentmethods",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/paymentmethods/{{id_membershipcards}}",
+									"host": ["{{url}}"],
+									"path": ["paymentmethods", "{{id_membershipcards}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get paymentmethods",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/paymentmethods",
+									"host": ["{{url}}"],
+									"path": ["paymentmethods"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch paymentmethods",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"transaction_id\": 1,\r\n  \"method\": \"credit_card\",\r\n  \"details\": \"VISA **** 1234\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/paymentmethods/{{id_membershipcards}}",
+									"host": ["{{url}}"],
+									"path": ["paymentmethods", "{{id_membershipcards}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete paymentmethods",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/paymentmethods/{{id_membershipcards}}",
+									"host": ["{{url}}"],
+									"path": ["paymentmethods", "{{id_membershipcards}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "subscriptions",
+					"item": [
+						{
+							"name": "Create subscriptions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_subscriptions\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"transaction_id\": 1,\r\n  \"date_start\": \"2024-06-07\",\r\n  \"date_end\": \"2025-06-07\",\r\n  \"status\": \"created\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/subscriptions",
+									"host": ["{{url}}"],
+									"path": ["subscriptions"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get subscriptions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/subscriptions/{{id_subscriptions}}",
+									"host": ["{{url}}"],
+									"path": ["subscriptions", "{{id_subscriptions}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get subscriptions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/subscriptions",
+									"host": ["{{url}}"],
+									"path": ["subscriptions"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch subscriptions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"transaction_id\": 2,\r\n  \"date_start\": \"2024-06-07\",\r\n  \"date_end\": \"2025-06-07\",\r\n  \"status\": \"canceled\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/subscriptions/{{id_subscriptions}}",
+									"host": ["{{url}}"],
+									"path": ["subscriptions", "{{id_subscriptions}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete subscriptions",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/subscriptions/{{id_subscriptions}}",
+									"host": ["{{url}}"],
+									"path": ["subscriptions", "{{id_subscriptions}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "transactions",
+					"item": [
+						{
+							"name": "Create transactions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_transactions\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user_id\": 1234,\r\n  \"purchase_id\": 5678,\r\n  \"method_id\": 91011,\r\n  \"amount\": 250.75,\r\n  \"status\": \"completed\",\r\n  \"date\": \"2024-06-07T15:30:00Z\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/transactions",
+									"host": ["{{url}}"],
+									"path": ["transactions"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get transactions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/transactions/{{id_transactions}}",
+									"host": ["{{url}}"],
+									"path": ["transactions", "{{id_transactions}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get transactions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/transactions",
+									"host": ["{{url}}"],
+									"path": ["transactions"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch transactions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user_id\": 1,\r\n  \"purchase_id\": 1,\r\n  \"method_id\": 1,\r\n  \"amount\": 250.75,\r\n  \"status\": \"completed\",\r\n  \"date\": \"2024-06-07T15:30:00Z\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/transactions/{{id_transactions}}",
+									"host": ["{{url}}"],
+									"path": ["transactions", "{{id_transactions}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete transactions",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/transactions/{{id_transactions}}",
+									"host": ["{{url}}"],
+									"path": ["transactions", "{{id_transactions}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "GOVERNANCE",
+			"item": [
+				{
+					"name": "attends",
+					"item": [
+						{
+							"name": "Create attends",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_attends\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user_id\": 1,\r\n  \"ga_id\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/attends",
+									"host": ["{{url}}"],
+									"path": ["attends"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get attends",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/attends/{{id_attends}}",
+									"host": ["{{url}}"],
+									"path": ["attends", "{{id_attends}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get attends",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/attends",
+									"host": ["{{url}}"],
+									"path": ["attends"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch attends",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user_id\": 1,\r\n  \"ga_id\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/attends/{{id_attends}}",
+									"host": ["{{url}}"],
+									"path": ["attends", "{{id_attends}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete attends",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/attends/{{id_attends}}",
+									"host": ["{{url}}"],
+									"path": ["attends", "{{id_attends}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "agendas",
+					"item": [
+						{
+							"name": "Create agendas",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_agendas\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ga_id\": 1\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/agendas",
+									"host": ["{{url}}"],
+									"path": ["agendas"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get agendas",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/agendas/{{id_agendas}}",
+									"host": ["{{url}}"],
+									"path": ["agendas", "{{id_agendas}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get agendas",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/agendas",
+									"host": ["{{url}}"],
+									"path": ["agendas"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch agendas",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ga_id\": 1\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/agendas/{{id_agendas}}",
+									"host": ["{{url}}"],
+									"path": ["agendas", "{{id_agendas}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete agendas",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/agendas/{{id_agendas}}",
+									"host": ["{{url}}"],
+									"path": ["agendas", "{{id_agendas}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "debates",
+					"item": [
+						{
+							"name": "Create debates",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_debates\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ga_id\": 1,\r\n  \"agenda_id\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/debates",
+									"host": ["{{url}}"],
+									"path": ["debates"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get debates",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/debates/{{id_debates}}",
+									"host": ["{{url}}"],
+									"path": ["debates", "{{id_debates}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get agendas",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/debates",
+									"host": ["{{url}}"],
+									"path": ["debates"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch debates",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ga_id\": 1,\r\n  \"agenda_id\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/debates/{{id_debates}}",
+									"host": ["{{url}}"],
+									"path": ["debates", "{{id_debates}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete debates",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/debates/{{id_debates}}",
+									"host": ["{{url}}"],
+									"path": ["debates", "{{id_debates}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "generalassemblies",
+					"item": [
+						{
+							"name": "Create generalassemblies",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_generalassemblies\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"date\": \"2024-06-07T15:30:00Z\",\r\n  \"location\": \"Main Conference Hall\"\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/generalassemblies",
+									"host": ["{{url}}"],
+									"path": ["generalassemblies"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get generalassemblies",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/generalassemblies/{{id_generalassemblies}}",
+									"host": ["{{url}}"],
+									"path": ["generalassemblies", "{{id_generalassemblies}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get generalassemblies",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/generalassemblies",
+									"host": ["{{url}}"],
+									"path": ["generalassemblies"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch generalassemblies",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"date\": \"2024-06-07T15:30:00Z\",\r\n  \"location\": \"Main Conference Hall\"\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/generalassemblies/{{id_generalassemblies}}",
+									"host": ["{{url}}"],
+									"path": ["generalassemblies", "{{id_generalassemblies}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete generalassemblies",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/generalassemblies/{{id_generalassemblies}}",
+									"host": ["{{url}}"],
+									"path": ["generalassemblies", "{{id_generalassemblies}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "includes",
+					"item": [
+						{
+							"name": "Create includes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_includes\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"agenda_id\": 1,\r\n  \"topics_id\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/includes",
+									"host": ["{{url}}"],
+									"path": ["includes"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get includes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/includes/{{id_includes}}",
+									"host": ["{{url}}"],
+									"path": ["includes", "{{id_includes}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get includes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/includes",
+									"host": ["{{url}}"],
+									"path": ["includes"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch includes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"agenda_id\": 1,\r\n  \"topics_id\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/includes/{{id_includes}}",
+									"host": ["{{url}}"],
+									"path": ["includes", "{{id_includes}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete includes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/includes/{{id_includes}}",
+									"host": ["{{url}}"],
+									"path": ["includes", "{{id_includes}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "resumes",
+					"item": [
+						{
+							"name": "Create resumes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_resumes\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ga_id\": 1,\r\n  \"minutes\": \"Detailed minutes of the general assembly meeting.\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/resumes",
+									"host": ["{{url}}"],
+									"path": ["resumes"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get resumes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/resumes/{{id_resumes}}",
+									"host": ["{{url}}"],
+									"path": ["resumes", "{{id_resumes}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get resumes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/resumes",
+									"host": ["{{url}}"],
+									"path": ["resumes"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch resumes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ga_id\": 1,\r\n  \"minutes\": \"Detailed minutes of the general assembly meeting.\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/resumes/{{id_resumes}}",
+									"host": ["{{url}}"],
+									"path": ["resumes", "{{id_resumes}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete resumes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/resumes/{{id_resumes}}",
+									"host": ["{{url}}"],
+									"path": ["resumes", "{{id_resumes}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "topics",
+					"item": [
+						{
+							"name": "Create topics",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_topics\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"agenda_id\": 1,\r\n  \"subject\": \"New Policy Discussion\",\r\n  \"description\": \"Discussion on the new policy for the upcoming year.\",\r\n  \"priority\": 1\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/topics",
+									"host": ["{{url}}"],
+									"path": ["topics"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get topics",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/topics/{{id_topics}}",
+									"host": ["{{url}}"],
+									"path": ["topics", "{{id_topics}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get topics",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/topics",
+									"host": ["{{url}}"],
+									"path": ["topics"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch topics",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"agenda_id\": 1,\r\n  \"subject\": \"New Policy Discussion\",\r\n  \"description\": \"Discussion on the new policy for the upcoming year.\",\r\n  \"priority\": 1\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/topics/{{id_topics}}",
+									"host": ["{{url}}"],
+									"path": ["topics", "{{id_topics}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete topics",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/topics/{{id_topics}}",
+									"host": ["{{url}}"],
+									"path": ["topics", "{{id_topics}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "votes",
+					"item": [
+						{
+							"name": "Create votes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_votes\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user_id\": 1,\r\n  \"vote_id\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/votes",
+									"host": ["{{url}}"],
+									"path": ["votes"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get votes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/votes/{{id_votes}}",
+									"host": ["{{url}}"],
+									"path": ["votes", "{{id_votes}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get votes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/votes",
+									"host": ["{{url}}"],
+									"path": ["votes"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch votes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user_id\": 1,\r\n  \"vote_id\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/votes/{{id_votes}}",
+									"host": ["{{url}}"],
+									"path": ["votes", "{{id_votes}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete votes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/votes/{{id_votes}}",
+									"host": ["{{url}}"],
+									"path": ["votes", "{{id_votes}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "votetables",
+					"item": [
+						{
+							"name": "Create votetables",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_votetables\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"voteoption_id\": 1,\r\n  \"topics_id\": 2,\r\n  \"date_start\": \"2024-06-07T09:00:00Z\",\r\n  \"date_end\": \"2024-06-07T17:00:00Z\",\r\n  \"status\": \"open\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/votetables",
+									"host": ["{{url}}"],
+									"path": ["votetables"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get votetables",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/votetables/{{id_votetables}}",
+									"host": ["{{url}}"],
+									"path": ["votetables", "{{id_votetables}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get votetables",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/votetables",
+									"host": ["{{url}}"],
+									"path": ["votetables"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch votetables",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"voteoption_id\": 1,\r\n  \"topics_id\": 2,\r\n  \"date_start\": \"2024-06-07T09:00:00Z\",\r\n  \"date_end\": \"2024-06-07T17:00:00Z\",\r\n  \"status\": \"open\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/votetables/{{id_votetables}}",
+									"host": ["{{url}}"],
+									"path": ["votetables", "{{id_votetables}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete votetables",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/votetables/{{id_votetables}}",
+									"host": ["{{url}}"],
+									"path": ["votetables", "{{id_votetables}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "expanse",
+					"item": [
+						{
+							"name": "Create expanse",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_expanses\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"category_id\": 1,\r\n  \"approved_by\": 2,\r\n  \"date\": \"2024-06-07T10:00:00Z\",\r\n  \"description\": \"Purchase of office supplies\",\r\n  \"amount\": 150.75,\r\n  \"recipient\": \"Office Depot\",\r\n  \"status\": \"approved\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/expanses",
+									"host": ["{{url}}"],
+									"path": ["expanses"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get expanses",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/expanses/{{id_expanses}}",
+									"host": ["{{url}}"],
+									"path": ["expanses", "{{id_expanses}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get expanses",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/expanses",
+									"host": ["{{url}}"],
+									"path": ["expanses"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch expanses",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"category_id\": 1,\r\n  \"approved_by\": 2,\r\n  \"date\": \"2024-06-07T10:00:00Z\",\r\n  \"description\": \"Purchase of office supplies\",\r\n  \"amount\": 150.75,\r\n  \"recipient\": \"Office Depot\",\r\n  \"status\": \"approved\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/expanses/{{id_expanses}}",
+									"host": ["{{url}}"],
+									"path": ["expanses", "{{id_expanses}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete expanses",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/expanses/{{id_expanses}}",
+									"host": ["{{url}}"],
+									"path": ["expanses", "{{id_expanses}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "expansecategories",
+					"item": [
+						{
+							"name": "Create expansecategories",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_expansecategories\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Office Supplies\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/expansecategories",
+									"host": ["{{url}}"],
+									"path": ["expansecategories"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get expansecategories",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/expansecategories/{{id_expansecategories}}",
+									"host": ["{{url}}"],
+									"path": ["expansecategories", "{{id_expansecategories}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get expansecategories",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/expansecategories",
+									"host": ["{{url}}"],
+									"path": ["expansecategories"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch expanses",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Office Supplies\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/expansecategories/{{id_expansecategories}}",
+									"host": ["{{url}}"],
+									"path": ["expansecategories", "{{id_expansecategories}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete expanses",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/expansecategories/{{id_expansecategories}}",
+									"host": ["{{url}}"],
+									"path": ["expansecategories", "{{id_expansecategories}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "write",
+					"item": [
+						{
+							"name": "Create writes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_writes\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user_id\": 1,\r\n  \"expanse_id\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/writes",
+									"host": ["{{url}}"],
+									"path": ["writes"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get writes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/writes/{{id_writes}}",
+									"host": ["{{url}}"],
+									"path": ["writes", "{{id_writes}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get writes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/writes",
+									"host": ["{{url}}"],
+									"path": ["writes"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch writes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user_id\": 1,\r\n  \"expanse_id\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/writes/{{id_writes}}",
+									"host": ["{{url}}"],
+									"path": ["writes", "{{id_writes}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete writes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/writes/{{id_writes}}",
+									"host": ["{{url}}"],
+									"path": ["writes", "{{id_writes}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "voteoptions",
+					"item": [
+						{
+							"name": "Create voteoptions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"id_voteoptions\", jsonData.id.toString());",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Approve Budget\",\r\n  \"description\": \"Option to approve the proposed budget for the next fiscal year.\"\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/voteoptions",
+									"host": ["{{url}}"],
+									"path": ["voteoptions"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get voteoptions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/voteoptions/{{id_voteoptions}}",
+									"host": ["{{url}}"],
+									"path": ["voteoptions", "{{id_voteoptions}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get voteoptions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/voteoptions",
+									"host": ["{{url}}"],
+									"path": ["voteoptions"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch voteoptions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Approve Budget\",\r\n  \"description\": \"Option to approve the proposed budget for the next fiscal year.\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/voteoptions/{{id_voteoptions}}",
+									"host": ["{{url}}"],
+									"path": ["voteoptions", "{{id_voteoptions}}"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete voteoptions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/voteoptions/{{id_voteoptions}}",
+									"host": ["{{url}}"],
+									"path": ["voteoptions", "{{id_voteoptions}}"]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "SIGN IN",
+			"item": [
+				{
+					"name": "login as User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test to store the token in a collection variable\r",
+									"pm.test(\"Store the token in a collection variable\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.collectionVariables.set(\"token\", jsonData.token);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"tony.stark@starkindustries.com\",\r\n  \"password\": \"password\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": ["{{url}}"],
+							"path": ["login"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register as User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Updated response time test to 300ms",
+									"pm.test(\"Response status code is 201\", function () {",
+									"  pm.response.to.have.status(201);",
+									"});",
+									"",
+									"",
+									"",
+									"pm.test(\"Response time is less than 800ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(800);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Define mock data\r",
+									"const roles = [\"guest\", \"employee\", \"admin\", \"user\"];\r",
+									"const firstNames = [\"Mark\", \"Johnny\", \"Jane\", \"Emily\", \"Michael\"];\r",
+									"const lastNames = [\"Zuckerberg\", \"Doe\", \"Smith\", \"Johnson\", \"Brown\", \"Soufflet\"];\r",
+									"const sexes = [\"male\", \"female\", \"other\"];\r",
+									"const phones = [\"+1234567890\", \"+0987654321\", \"+1122334455\", \"+5566778899\", \"+6677889900\"];\r",
+									"const countries = [\"USA\", \"Canada\", \"France\", \"Germany\", \"Australia\"];\r",
+									"const cities = [\"New York\", \"Toronto\", \"Paris\", \"Berlin\", \"Sydney\"];\r",
+									"const permissionsByRole = {\r",
+									"    guest: [\"view_content\"],\r",
+									"    employee: [\"manage_fiscality\", \"access_resources\"],\r",
+									"    admin: [\"manage_users\", \"manage_fiscality\", \"full_access\"],\r",
+									"    user: [\"access_resources\"]\r",
+									"};\r",
+									"\r",
+									"// Function to get a random item from an array\r",
+									"function getRandomItem(arr) {\r",
+									"    return arr[Math.floor(Math.random() * arr.length)];\r",
+									"}\r",
+									"\r",
+									"// Generate random mock data\r",
+									"const randomRole = getRandomItem(roles);\r",
+									"const randomFirstName = getRandomItem(firstNames);\r",
+									"const randomLastName = getRandomItem(lastNames);\r",
+									"const randomSex = getRandomItem(sexes);\r",
+									"const randomPhone = getRandomItem(phones);\r",
+									"const randomCountry = getRandomItem(countries);\r",
+									"const randomCity = getRandomItem(cities);\r",
+									"const randomEmail = `${randomFirstName.toLowerCase()}${Math.floor(Math.random() * 10000)}@gmail.com`;\r",
+									"const randomPassword = \"P@55W0RD\";\r",
+									"const randomAccountStatus = \"active\";\r",
+									"const randomPermissions = permissionsByRole[randomRole];\r",
+									"const randomBirthday = new Date(+(new Date()) - Math.floor(Math.random()*100000000000)).toISOString().split('T')[0]; // Random date in the past\r",
+									"const randomReferrerId = Math.floor(Math.random() * 100); // Random referrer ID for demonstration\r",
+									"\r",
+									"// Set mock data as collection variables\r",
+									"pm.collectionVariables.set(\"role\", randomRole);\r",
+									"pm.collectionVariables.set(\"first_name\", randomFirstName);\r",
+									"pm.collectionVariables.set(\"last_name\", randomLastName);\r",
+									"pm.collectionVariables.set(\"sexe\", randomSex);\r",
+									"pm.collectionVariables.set(\"phone\", randomPhone);\r",
+									"pm.collectionVariables.set(\"country\", randomCountry);\r",
+									"pm.collectionVariables.set(\"city\", randomCity);\r",
+									"pm.collectionVariables.set(\"email\", randomEmail);\r",
+									"pm.collectionVariables.set(\"password\", randomPassword);\r",
+									"pm.collectionVariables.set(\"account_status\", randomAccountStatus);\r",
+									"pm.collectionVariables.set(\"permissions\", JSON.stringify(randomPermissions));\r",
+									"pm.collectionVariables.set(\"birthday\", randomBirthday);\r",
+									"pm.collectionVariables.set(\"referrer_id\", randomReferrerId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"{{role}}\",\r\n    \"first_name\": \"{{first_name}}\",\r\n    \"last_name\": \"{{last_name}}\",\r\n    \"birthday\": \"{{birthday}}\",\r\n    \"sexe\": \"{{sexe}}\",\r\n    \"phone\": \"{{phone}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\",\r\n    \"account_status\": \"{{account_status}}\",\r\n    \"permissions\": {{permissions}},\r\n    \"referrer_id\": \"{{referrer_id}}\",\r\n    \"country\": \"{{country}}\",\r\n    \"city\": \"{{city}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/register",
+							"host": ["{{url}}"],
+							"path": ["register"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.odm.ovh/hello",
+					"protocol": "http",
+					"host": ["api", "odm", "ovh"],
+					"path": ["hello"]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "userId",
+			"value": ""
+		},
+		{
+			"key": "id_address",
+			"value": ""
+		},
+		{
+			"key": "id_participate",
+			"value": ""
+		},
+		{
+			"key": "id_event",
+			"value": ""
+		},
+		{
+			"key": "id_rent",
+			"value": ""
+		},
+		{
+			"key": "id_furniture",
+			"value": ""
+		},
+		{
+			"key": "id_furniturecategorys",
+			"value": ""
+		},
+		{
+			"key": "donations_id",
+			"value": ""
+		},
+		{
+			"key": "id_donations",
+			"value": ""
+		},
+		{
+			"key": "id_membershipcards",
+			"value": ""
+		},
+		{
+			"key": "id_paymentmethods",
+			"value": ""
+		},
+		{
+			"key": "id_subscriptions",
+			"value": ""
+		},
+		{
+			"key": "id_transactions",
+			"value": ""
+		},
+		{
+			"key": "id_agendas",
+			"value": ""
+		},
+		{
+			"key": "id_attends",
+			"value": ""
+		},
+		{
+			"key": "id_debates",
+			"value": ""
+		},
+		{
+			"key": "id_generalassemblies",
+			"value": ""
+		},
+		{
+			"key": "id_includes",
+			"value": ""
+		},
+		{
+			"key": "id_resumes",
+			"value": ""
+		},
+		{
+			"key": "id_topics",
+			"value": ""
+		},
+		{
+			"key": "id_votes",
+			"value": ""
+		},
+		{
+			"key": "id_votetables",
+			"value": ""
+		},
+		{
+			"key": "id_expanses",
+			"value": ""
+		},
+		{
+			"key": "id_expansecategories",
+			"value": ""
+		},
+		{
+			"key": "id_writes",
+			"value": ""
+		},
+		{
+			"key": "id_voteoptions",
+			"value": ""
+		},
+		{
+			"key": "id_building",
+			"value": ""
+		},
+		{
+			"key": "id_room",
+			"value": ""
+		},
+		{
+			"key": "id_meeting",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "user_id",
+			"value": ""
+		},
+		{
+			"key": "activity_id",
+			"value": ""
+		},
+		{
+			"key": "role",
+			"value": ""
+		},
+		{
+			"key": "present",
+			"value": ""
+		},
+		{
+			"key": "first_name",
+			"value": ""
+		},
+		{
+			"key": "last_name",
+			"value": ""
+		},
+		{
+			"key": "sexe",
+			"value": ""
+		},
+		{
+			"key": "phone",
+			"value": ""
+		},
+		{
+			"key": "country",
+			"value": ""
+		},
+		{
+			"key": "city",
+			"value": ""
+		},
+		{
+			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "account_status",
+			"value": ""
+		},
+		{
+			"key": "permissions",
+			"value": ""
+		},
+		{
+			"key": "birthday",
+			"value": ""
+		},
+		{
+			"key": "referrer_id",
+			"value": ""
+		},
+		{
+			"key": "id_activity",
+			"value": ""
+		},
+		{
+			"key": "title",
+			"value": ""
+		},
+		{
+			"key": "description",
+			"value": ""
+		},
+		{
+			"key": "image",
+			"value": ""
+		},
+		{
+			"key": "date_start",
+			"value": ""
+		},
+		{
+			"key": "date_end",
+			"value": ""
+		},
+		{
+			"key": "status",
+			"value": ""
+		},
+		{
+			"key": "type",
+			"value": ""
+		},
+		{
+			"key": "organizer_id",
+			"value": ""
+		},
+		{
+			"key": "location_id",
+			"value": ""
+		},
+		{
+			"key": "category_id",
+			"value": ""
+		},
+		{
+			"key": "name",
+			"value": ""
+		},
+		{
+			"key": "storage",
+			"value": ""
+		},
+		{
+			"key": "details",
+			"value": ""
+		},
+		{
+			"key": "cost",
+			"value": ""
+		},
+		{
+			"key": "id_ressource",
+			"value": ""
+		},
+		{
+			"key": "id_ressourceCategory",
+			"value": ""
+		},
+		{
+			"key": "ressource_id",
+			"value": ""
+		},
+		{
+			"key": "id_use",
+			"value": ""
+		},
+		{
+			"key": "random_field",
+			"value": ""
+		},
+		{
+			"key": "random_value",
+			"value": ""
+		},
+		{
+			"key": "id_location",
+			"value": ""
+		},
+		{
+			"key": "address_id",
+			"value": ""
+		},
+		{
+			"key": "floor",
+			"value": ""
+		},
+		{
+			"key": "capacity",
+			"value": ""
+		},
+		{
+			"key": "building_id",
+			"value": ""
+		},
+		{
+			"key": "equipment",
+			"value": ""
+		}
+	]
+}

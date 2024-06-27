@@ -1,11 +1,11 @@
 import type { DataSource } from "typeorm";
-import { VoteTable } from "../database/entities/VoteTable";
+import { VoteTable } from "../../database/entities/VoteTable";
 import {
 	type CreateVoteTableRequest,
 	type UpdateVoteTableRequest,
 	createVoteTableValidation,
 	updateVoteTableValidation,
-} from "../handlers/validators/votetable-validator";
+} from "../../handlers/validators/votetable-validator";
 
 export class VoteTableUsecase {
 	constructor(private readonly db: DataSource) {}

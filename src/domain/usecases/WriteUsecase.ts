@@ -1,11 +1,11 @@
 import type { DataSource } from "typeorm";
-import { Write } from "../database/entities/Write";
+import { Write } from "../../database/entities/Write";
 import {
 	type CreateWriteRequest,
 	type UpdateWriteRequest,
 	createWriteValidation,
 	updateWriteValidation,
-} from "../handlers/validators/write-validator";
+} from "../../handlers/validators/write-validator";
 
 export class WriteUsecase {
 	constructor(private readonly db: DataSource) {}

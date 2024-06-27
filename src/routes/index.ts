@@ -29,3 +29,8 @@ export * from "./expansecategory";
 export * from "./write";
 export * from "./voteoption";
 export * from "./login";
+export * from "./activity";
+export * from "./ressource";
+export * from "./ressourcecategory";
+export * from "./use";
+export * from "./location";
