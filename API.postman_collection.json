@@ -125,12 +125,8 @@
 						},
 						"url": {
 							"raw": "{{url}}/users",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users"
-							]
+							"host": ["{{url}}"],
+							"path": ["users"]
 						}
 					},
 					"response": []
@@ -188,13 +184,8 @@
 						"header": [],
 						"url": {
 							"raw": "{{url}}/users/{{userId}}",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"{{userId}}"
-							]
+							"host": ["{{url}}"],
+							"path": ["users", "{{userId}}"]
 						}
 					},
 					"response": []
@@ -258,12 +249,8 @@
 						"header": [],
 						"url": {
 							"raw": "{{url}}/users",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users"
-							]
+							"host": ["{{url}}"],
+							"path": ["users"]
 						}
 					},
 					"response": []
@@ -324,13 +311,8 @@
 						},
 						"url": {
 							"raw": "{{url}}/users/{{userId}}",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"{{userId}}"
-							]
+							"host": ["{{url}}"],
+							"path": ["users", "{{userId}}"]
 						}
 					},
 					"response": []
@@ -370,13 +352,8 @@
 						"header": [],
 						"url": {
 							"raw": "{{url}}/users/{{userId}}",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"{{userId}}"
-							]
+							"host": ["{{url}}"],
+							"path": ["users", "{{userId}}"]
 						}
 					},
 					"response": []
@@ -422,12 +399,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/addresses",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"addresses"
-									]
+									"host": ["{{url}}"],
+									"path": ["addresses"]
 								}
 							},
 							"response": []
@@ -455,13 +428,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/addresses/{{id_address}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"addresses",
-										"{{id_address}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["addresses", "{{id_address}}"]
 								}
 							},
 							"response": []
@@ -499,12 +467,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/addresses",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"addresses"
-									]
+									"host": ["{{url}}"],
+									"path": ["addresses"]
 								}
 							},
 							"response": []
@@ -578,13 +542,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/addresses/{{id_address}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"addresses",
-										"{{id_address}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["addresses", "{{id_address}}"]
 								}
 							},
 							"response": []
@@ -610,13 +569,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/addresses/{{id_address}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"addresses",
-										"{{id_address}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["addresses", "{{id_address}}"]
 								}
 							},
 							"response": []
@@ -716,12 +670,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/buildings",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"buildings"
-									]
+									"host": ["{{url}}"],
+									"path": ["buildings"]
 								}
 							},
 							"response": []
@@ -782,13 +732,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/buildings/{{id_building}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"buildings",
-										"{{id_building}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["buildings", "{{id_building}}"]
 								}
 							},
 							"response": []
@@ -856,12 +801,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/buildings",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"buildings"
-									]
+									"host": ["{{url}}"],
+									"path": ["buildings"]
 								}
 							},
 							"response": []
@@ -929,13 +870,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/buildings/{{id_building}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"buildings",
-										"{{id_building}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["buildings", "{{id_building}}"]
 								}
 							},
 							"response": []
@@ -947,13 +883,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/buildings/{{id_building}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"buildings",
-										"{{id_building}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["buildings", "{{id_building}}"]
 								}
 							},
 							"response": []
@@ -1022,12 +953,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/locations",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"locations"
-									]
+									"host": ["{{url}}"],
+									"path": ["locations"]
 								}
 							},
 							"response": []
@@ -1070,13 +997,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/locations/{{id_location}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"locations",
-										"{{id_location}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["locations", "{{id_location}}"]
 								}
 							},
 							"response": []
@@ -1126,12 +1048,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/locations",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"locations"
-									]
+									"host": ["{{url}}"],
+									"path": ["locations"]
 								}
 							},
 							"response": []
@@ -1213,13 +1131,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/locations/{{id_location}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"locations",
-										"{{id_location}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["locations", "{{id_location}}"]
 								}
 							},
 							"response": []
@@ -1249,13 +1162,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/locations/{{id_location}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"locations",
-										"{{id_location}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["locations", "{{id_location}}"]
 								}
 							},
 							"response": []
@@ -1388,12 +1296,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/rooms",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"rooms"
-									]
+									"host": ["{{url}}"],
+									"path": ["rooms"]
 								}
 							},
 							"response": []
@@ -1423,13 +1327,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/rooms/{{id_room}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"rooms",
-										"{{id_room}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["rooms", "{{id_room}}"]
 								}
 							},
 							"response": []
@@ -1459,12 +1358,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/rooms",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"rooms"
-									]
+									"host": ["{{url}}"],
+									"path": ["rooms"]
 								}
 							},
 							"response": []
@@ -1513,13 +1408,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/rooms/{{id_room}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"rooms",
-										"{{id_room}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["rooms", "{{id_room}}"]
 								}
 							},
 							"response": []
@@ -1550,13 +1440,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/rooms/{{id_room}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"rooms",
-										"{{id_room}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["rooms", "{{id_room}}"]
 								}
 							},
 							"response": []
@@ -1598,12 +1483,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/meetings",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"meetings"
-									]
+									"host": ["{{url}}"],
+									"path": ["meetings"]
 								}
 							},
 							"response": []
@@ -1630,13 +1511,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/meetings/{{id_meeting}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"meetings",
-										"{{id_meeting}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["meetings", "{{id_meeting}}"]
 								}
 							},
 							"response": []
@@ -1663,12 +1539,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/meetings",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"meetings"
-									]
+									"host": ["{{url}}"],
+									"path": ["meetings"]
 								}
 							},
 							"response": []
@@ -1705,13 +1577,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/meetings/{{id_meeting}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"meetings",
-										"{{id_meeting}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["meetings", "{{id_meeting}}"]
 								}
 							},
 							"response": []
@@ -1737,13 +1604,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/meetings/{{id_meeting}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"meetings",
-										"{{id_meeting}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["meetings", "{{id_meeting}}"]
 								}
 							},
 							"response": []
@@ -1791,12 +1653,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/furniturecategorys",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"furniturecategorys"
-									]
+									"host": ["{{url}}"],
+									"path": ["furniturecategorys"]
 								}
 							},
 							"response": []
@@ -1824,13 +1682,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/furniturecategorys/{{id_furniturecategorys}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"furniturecategorys",
-										"{{id_furniturecategorys}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["furniturecategorys", "{{id_furniturecategorys}}"]
 								}
 							},
 							"response": []
@@ -1857,12 +1710,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/furniturecategorys",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"furniturecategorys"
-									]
+									"host": ["{{url}}"],
+									"path": ["furniturecategorys"]
 								}
 							},
 							"response": []
@@ -1906,13 +1755,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/furniturecategorys/{{id_furniturecategorys}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"furniturecategorys",
-										"{{id_furniturecategorys}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["furniturecategorys", "{{id_furniturecategorys}}"]
 								}
 							},
 							"response": []
@@ -1938,13 +1782,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/furniturecategorys/{{id_furniturecategorys}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"furniturecategorys",
-										"{{id_furniturecategorys}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["furniturecategorys", "{{id_furniturecategorys}}"]
 								}
 							},
 							"response": []
@@ -1987,12 +1826,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/ressourceCategories",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"ressourceCategories"
-									]
+									"host": ["{{url}}"],
+									"path": ["ressourceCategories"]
 								}
 							},
 							"response": []
@@ -2020,13 +1855,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/ressourceCategories/{{id_ressourceCategory}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"ressourceCategories",
-										"{{id_ressourceCategory}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["ressourceCategories", "{{id_ressourceCategory}}"]
 								}
 							},
 							"response": []
@@ -2053,12 +1883,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/ressourceCategories",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"ressourceCategories"
-									]
+									"host": ["{{url}}"],
+									"path": ["ressourceCategories"]
 								}
 							},
 							"response": []
@@ -2102,13 +1928,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/ressourceCategories/{{id_ressourceCategory}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"ressourceCategories",
-										"{{id_ressourceCategory}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["ressourceCategories", "{{id_ressourceCategory}}"]
 								}
 							},
 							"response": []
@@ -2134,13 +1955,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/ressourceCategories/{{id_ressourceCategory}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"ressourceCategories",
-										"{{id_ressourceCategory}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["ressourceCategories", "{{id_ressourceCategory}}"]
 								}
 							},
 							"response": []
@@ -2183,12 +1999,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/furnitures",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"furnitures"
-									]
+									"host": ["{{url}}"],
+									"path": ["furnitures"]
 								}
 							},
 							"response": []
@@ -2216,13 +2028,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/furnitures/{{id_furniture}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"furnitures",
-										"{{id_furniture}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["furnitures", "{{id_furniture}}"]
 								}
 							},
 							"response": []
@@ -2249,12 +2056,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/furnitures",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"furnitures"
-									]
+									"host": ["{{url}}"],
+									"path": ["furnitures"]
 								}
 							},
 							"response": []
@@ -2298,13 +2101,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/furnitures/{{id_furniture}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"furnitures",
-										"{{id_furniture}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["furnitures", "{{id_furniture}}"]
 								}
 							},
 							"response": []
@@ -2330,13 +2128,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/furnitures/{{id_furniture}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"furnitures",
-										"{{id_furniture}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["furnitures", "{{id_furniture}}"]
 								}
 							},
 							"response": []
@@ -2417,12 +2210,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/ressources",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"ressources"
-									]
+									"host": ["{{url}}"],
+									"path": ["ressources"]
 								}
 							},
 							"response": []
@@ -2450,13 +2239,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/ressources/{{id_ressource}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"ressources",
-										"{{id_ressource}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["ressources", "{{id_ressource}}"]
 								}
 							},
 							"response": []
@@ -2483,12 +2267,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/ressources",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"ressources"
-									]
+									"host": ["{{url}}"],
+									"path": ["ressources"]
 								}
 							},
 							"response": []
@@ -2532,13 +2312,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/ressources/{{id_ressource}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"ressources",
-										"{{id_ressource}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["ressources", "{{id_ressource}}"]
 								}
 							},
 							"response": []
@@ -2564,13 +2339,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/ressources/{{id_ressource}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"ressources",
-										"{{id_ressource}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["ressources", "{{id_ressource}}"]
 								}
 							},
 							"response": []
@@ -2613,12 +2383,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/rents",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"rents"
-									]
+									"host": ["{{url}}"],
+									"path": ["rents"]
 								}
 							},
 							"response": []
@@ -2646,13 +2412,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/rents/{{id_rent}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"rents",
-										"{{id_rent}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["rents", "{{id_rent}}"]
 								}
 							},
 							"response": []
@@ -2679,12 +2440,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/rents",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"rents"
-									]
+									"host": ["{{url}}"],
+									"path": ["rents"]
 								}
 							},
 							"response": []
@@ -2728,13 +2485,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/rents/{{id_rent}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"rents",
-										"{{id_rent}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["rents", "{{id_rent}}"]
 								}
 							},
 							"response": []
@@ -2760,13 +2512,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/rents/{{id_rent}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"rents",
-										"{{id_rent}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["rents", "{{id_rent}}"]
 								}
 							},
 							"response": []
@@ -2809,12 +2556,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/events",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"events"
-									]
+									"host": ["{{url}}"],
+									"path": ["events"]
 								}
 							},
 							"response": []
@@ -2842,13 +2585,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/events/{{id_event}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"events",
-										"{{id_event}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["events", "{{id_event}}"]
 								}
 							},
 							"response": []
@@ -2875,12 +2613,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/events",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"events"
-									]
+									"host": ["{{url}}"],
+									"path": ["events"]
 								}
 							},
 							"response": []
@@ -2924,13 +2658,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/events/{{id_event}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"events",
-										"{{id_event}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["events", "{{id_event}}"]
 								}
 							},
 							"response": []
@@ -2956,13 +2685,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/events/{{id_event}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"events",
-										"{{id_event}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["events", "{{id_event}}"]
 								}
 							},
 							"response": []
@@ -3048,12 +2772,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/activities",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"activities"
-									]
+									"host": ["{{url}}"],
+									"path": ["activities"]
 								}
 							},
 							"response": []
@@ -3081,13 +2801,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/activities/{{id_activity}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"activities",
-										"{{id_activity}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["activities", "{{id_activity}}"]
 								}
 							},
 							"response": []
@@ -3114,12 +2829,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/activities",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"activities"
-									]
+									"host": ["{{url}}"],
+									"path": ["activities"]
 								}
 							},
 							"response": []
@@ -3163,13 +2874,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/activities/{{id_activity}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"activities",
-										"{{id_activity}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["activities", "{{id_activity}}"]
 								}
 							},
 							"response": []
@@ -3195,13 +2901,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/activities/{{id_activity}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"activities",
-										"{{id_activity}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["activities", "{{id_activity}}"]
 								}
 							},
 							"response": []
@@ -3270,12 +2971,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/uses",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"uses"
-									]
+									"host": ["{{url}}"],
+									"path": ["uses"]
 								}
 							},
 							"response": []
@@ -3303,13 +3000,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/uses/{{id_use}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"uses",
-										"{{id_use}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["uses", "{{id_use}}"]
 								}
 							},
 							"response": []
@@ -3336,12 +3028,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/uses",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"uses"
-									]
+									"host": ["{{url}}"],
+									"path": ["uses"]
 								}
 							},
 							"response": []
@@ -3385,13 +3073,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/uses/{{id_use}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"uses",
-										"{{id_use}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["uses", "{{id_use}}"]
 								}
 							},
 							"response": []
@@ -3417,13 +3100,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/uses/{{id_use}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"uses",
-										"{{id_use}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["uses", "{{id_use}}"]
 								}
 							},
 							"response": []
@@ -3497,12 +3175,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/participates",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"participates"
-									]
+									"host": ["{{url}}"],
+									"path": ["participates"]
 								}
 							},
 							"response": []
@@ -3530,13 +3204,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/participates/{{id_participate}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"participates",
-										"{{id_participate}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["participates", "{{id_participate}}"]
 								}
 							},
 							"response": []
@@ -3562,12 +3231,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/participates",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"participates"
-									]
+									"host": ["{{url}}"],
+									"path": ["participates"]
 								}
 							},
 							"response": []
@@ -3603,13 +3268,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/participates/{{id_participate}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"participates",
-										"{{id_participate}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["participates", "{{id_participate}}"]
 								}
 							},
 							"response": []
@@ -3649,13 +3309,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/participates/{{id_participate}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"participates",
-										"{{id_participate}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["participates", "{{id_participate}}"]
 								}
 							},
 							"response": []
@@ -3703,12 +3358,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/donations",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"donations"
-									]
+									"host": ["{{url}}"],
+									"path": ["donations"]
 								}
 							},
 							"response": []
@@ -3736,13 +3387,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/donations/{{id_donations}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"donations",
-										"{{id_donations}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["donations", "{{id_donations}}"]
 								}
 							},
 							"response": []
@@ -3768,12 +3414,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/donations",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"donations"
-									]
+									"host": ["{{url}}"],
+									"path": ["donations"]
 								}
 							},
 							"response": []
@@ -3808,13 +3450,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/donations/{{id_donations}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"donations",
-										"{{id_donations}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["donations", "{{id_donations}}"]
 								}
 							},
 							"response": []
@@ -3826,13 +3463,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/donations/3",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"donations",
-										"3"
-									]
+									"host": ["{{url}}"],
+									"path": ["donations", "3"]
 								}
 							},
 							"response": []
@@ -3875,12 +3507,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/membershipcards",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"membershipcards"
-									]
+									"host": ["{{url}}"],
+									"path": ["membershipcards"]
 								}
 							},
 							"response": []
@@ -3908,13 +3536,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/membershipcards/{{id_membershipcards}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"membershipcards",
-										"{{id_membershipcards}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["membershipcards", "{{id_membershipcards}}"]
 								}
 							},
 							"response": []
@@ -3940,12 +3563,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/membershipcards",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"membershipcards"
-									]
+									"host": ["{{url}}"],
+									"path": ["membershipcards"]
 								}
 							},
 							"response": []
@@ -3980,13 +3599,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/membershipcards/{{id_membershipcards}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"membershipcards",
-										"{{id_membershipcards}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["membershipcards", "{{id_membershipcards}}"]
 								}
 							},
 							"response": []
@@ -3998,13 +3612,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/membershipcards/{{id_membershipcards}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"membershipcards",
-										"{{id_membershipcards}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["membershipcards", "{{id_membershipcards}}"]
 								}
 							},
 							"response": []
@@ -4047,12 +3656,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/paymentmethods",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"paymentmethods"
-									]
+									"host": ["{{url}}"],
+									"path": ["paymentmethods"]
 								}
 							},
 							"response": []
@@ -4080,13 +3685,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/paymentmethods/{{id_membershipcards}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"paymentmethods",
-										"{{id_membershipcards}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["paymentmethods", "{{id_membershipcards}}"]
 								}
 							},
 							"response": []
@@ -4112,12 +3712,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/paymentmethods",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"paymentmethods"
-									]
+									"host": ["{{url}}"],
+									"path": ["paymentmethods"]
 								}
 							},
 							"response": []
@@ -4152,13 +3748,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/paymentmethods/{{id_membershipcards}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"paymentmethods",
-										"{{id_membershipcards}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["paymentmethods", "{{id_membershipcards}}"]
 								}
 							},
 							"response": []
@@ -4170,13 +3761,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/paymentmethods/{{id_membershipcards}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"paymentmethods",
-										"{{id_membershipcards}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["paymentmethods", "{{id_membershipcards}}"]
 								}
 							},
 							"response": []
@@ -4219,12 +3805,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/subscriptions",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"subscriptions"
-									]
+									"host": ["{{url}}"],
+									"path": ["subscriptions"]
 								}
 							},
 							"response": []
@@ -4252,13 +3834,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/subscriptions/{{id_subscriptions}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"subscriptions",
-										"{{id_subscriptions}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["subscriptions", "{{id_subscriptions}}"]
 								}
 							},
 							"response": []
@@ -4284,12 +3861,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/subscriptions",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"subscriptions"
-									]
+									"host": ["{{url}}"],
+									"path": ["subscriptions"]
 								}
 							},
 							"response": []
@@ -4324,13 +3897,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/subscriptions/{{id_subscriptions}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"subscriptions",
-										"{{id_subscriptions}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["subscriptions", "{{id_subscriptions}}"]
 								}
 							},
 							"response": []
@@ -4342,13 +3910,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/subscriptions/{{id_subscriptions}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"subscriptions",
-										"{{id_subscriptions}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["subscriptions", "{{id_subscriptions}}"]
 								}
 							},
 							"response": []
@@ -4391,12 +3954,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/transactions",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"transactions"
-									]
+									"host": ["{{url}}"],
+									"path": ["transactions"]
 								}
 							},
 							"response": []
@@ -4424,13 +3983,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/transactions/{{id_transactions}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"transactions",
-										"{{id_transactions}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["transactions", "{{id_transactions}}"]
 								}
 							},
 							"response": []
@@ -4456,12 +4010,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/transactions",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"transactions"
-									]
+									"host": ["{{url}}"],
+									"path": ["transactions"]
 								}
 							},
 							"response": []
@@ -4496,13 +4046,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/transactions/{{id_transactions}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"transactions",
-										"{{id_transactions}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["transactions", "{{id_transactions}}"]
 								}
 							},
 							"response": []
@@ -4514,13 +4059,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/transactions/{{id_transactions}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"transactions",
-										"{{id_transactions}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["transactions", "{{id_transactions}}"]
 								}
 							},
 							"response": []
@@ -4568,12 +4108,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/attends",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"attends"
-									]
+									"host": ["{{url}}"],
+									"path": ["attends"]
 								}
 							},
 							"response": []
@@ -4601,13 +4137,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/attends/{{id_attends}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"attends",
-										"{{id_attends}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["attends", "{{id_attends}}"]
 								}
 							},
 							"response": []
@@ -4633,12 +4164,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/attends",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"attends"
-									]
+									"host": ["{{url}}"],
+									"path": ["attends"]
 								}
 							},
 							"response": []
@@ -4673,13 +4200,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/attends/{{id_attends}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"attends",
-										"{{id_attends}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["attends", "{{id_attends}}"]
 								}
 							},
 							"response": []
@@ -4691,13 +4213,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/attends/{{id_attends}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"attends",
-										"{{id_attends}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["attends", "{{id_attends}}"]
 								}
 							},
 							"response": []
@@ -4740,12 +4257,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/agendas",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"agendas"
-									]
+									"host": ["{{url}}"],
+									"path": ["agendas"]
 								}
 							},
 							"response": []
@@ -4773,13 +4286,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/agendas/{{id_agendas}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"agendas",
-										"{{id_agendas}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["agendas", "{{id_agendas}}"]
 								}
 							},
 							"response": []
@@ -4805,12 +4313,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/agendas",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"agendas"
-									]
+									"host": ["{{url}}"],
+									"path": ["agendas"]
 								}
 							},
 							"response": []
@@ -4845,13 +4349,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/agendas/{{id_agendas}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"agendas",
-										"{{id_agendas}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["agendas", "{{id_agendas}}"]
 								}
 							},
 							"response": []
@@ -4863,13 +4362,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/agendas/{{id_agendas}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"agendas",
-										"{{id_agendas}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["agendas", "{{id_agendas}}"]
 								}
 							},
 							"response": []
@@ -4912,12 +4406,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/debates",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"debates"
-									]
+									"host": ["{{url}}"],
+									"path": ["debates"]
 								}
 							},
 							"response": []
@@ -4945,13 +4435,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/debates/{{id_debates}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"debates",
-										"{{id_debates}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["debates", "{{id_debates}}"]
 								}
 							},
 							"response": []
@@ -4977,12 +4462,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/debates",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"debates"
-									]
+									"host": ["{{url}}"],
+									"path": ["debates"]
 								}
 							},
 							"response": []
@@ -5017,13 +4498,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/debates/{{id_debates}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"debates",
-										"{{id_debates}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["debates", "{{id_debates}}"]
 								}
 							},
 							"response": []
@@ -5049,13 +4525,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/debates/{{id_debates}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"debates",
-										"{{id_debates}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["debates", "{{id_debates}}"]
 								}
 							},
 							"response": []
@@ -5098,12 +4569,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/generalassemblies",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"generalassemblies"
-									]
+									"host": ["{{url}}"],
+									"path": ["generalassemblies"]
 								}
 							},
 							"response": []
@@ -5131,13 +4598,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/generalassemblies/{{id_generalassemblies}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"generalassemblies",
-										"{{id_generalassemblies}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["generalassemblies", "{{id_generalassemblies}}"]
 								}
 							},
 							"response": []
@@ -5163,12 +4625,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/generalassemblies",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"generalassemblies"
-									]
+									"host": ["{{url}}"],
+									"path": ["generalassemblies"]
 								}
 							},
 							"response": []
@@ -5203,13 +4661,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/generalassemblies/{{id_generalassemblies}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"generalassemblies",
-										"{{id_generalassemblies}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["generalassemblies", "{{id_generalassemblies}}"]
 								}
 							},
 							"response": []
@@ -5235,13 +4688,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/generalassemblies/{{id_generalassemblies}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"generalassemblies",
-										"{{id_generalassemblies}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["generalassemblies", "{{id_generalassemblies}}"]
 								}
 							},
 							"response": []
@@ -5284,12 +4732,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/includes",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"includes"
-									]
+									"host": ["{{url}}"],
+									"path": ["includes"]
 								}
 							},
 							"response": []
@@ -5317,13 +4761,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/includes/{{id_includes}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"includes",
-										"{{id_includes}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["includes", "{{id_includes}}"]
 								}
 							},
 							"response": []
@@ -5349,12 +4788,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/includes",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"includes"
-									]
+									"host": ["{{url}}"],
+									"path": ["includes"]
 								}
 							},
 							"response": []
@@ -5389,13 +4824,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/includes/{{id_includes}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"includes",
-										"{{id_includes}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["includes", "{{id_includes}}"]
 								}
 							},
 							"response": []
@@ -5421,13 +4851,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/includes/{{id_includes}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"includes",
-										"{{id_includes}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["includes", "{{id_includes}}"]
 								}
 							},
 							"response": []
@@ -5470,12 +4895,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/resumes",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"resumes"
-									]
+									"host": ["{{url}}"],
+									"path": ["resumes"]
 								}
 							},
 							"response": []
@@ -5503,13 +4924,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/resumes/{{id_resumes}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"resumes",
-										"{{id_resumes}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["resumes", "{{id_resumes}}"]
 								}
 							},
 							"response": []
@@ -5535,12 +4951,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/resumes",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"resumes"
-									]
+									"host": ["{{url}}"],
+									"path": ["resumes"]
 								}
 							},
 							"response": []
@@ -5575,13 +4987,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/resumes/{{id_resumes}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"resumes",
-										"{{id_resumes}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["resumes", "{{id_resumes}}"]
 								}
 							},
 							"response": []
@@ -5607,13 +5014,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/resumes/{{id_resumes}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"resumes",
-										"{{id_resumes}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["resumes", "{{id_resumes}}"]
 								}
 							},
 							"response": []
@@ -5656,12 +5058,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/topics",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"topics"
-									]
+									"host": ["{{url}}"],
+									"path": ["topics"]
 								}
 							},
 							"response": []
@@ -5689,13 +5087,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/topics/{{id_topics}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"topics",
-										"{{id_topics}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["topics", "{{id_topics}}"]
 								}
 							},
 							"response": []
@@ -5721,12 +5114,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/topics",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"topics"
-									]
+									"host": ["{{url}}"],
+									"path": ["topics"]
 								}
 							},
 							"response": []
@@ -5761,13 +5150,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/topics/{{id_topics}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"topics",
-										"{{id_topics}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["topics", "{{id_topics}}"]
 								}
 							},
 							"response": []
@@ -5793,13 +5177,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/topics/{{id_topics}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"topics",
-										"{{id_topics}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["topics", "{{id_topics}}"]
 								}
 							},
 							"response": []
@@ -5842,12 +5221,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/votes",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"votes"
-									]
+									"host": ["{{url}}"],
+									"path": ["votes"]
 								}
 							},
 							"response": []
@@ -5875,13 +5250,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/votes/{{id_votes}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"votes",
-										"{{id_votes}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["votes", "{{id_votes}}"]
 								}
 							},
 							"response": []
@@ -5907,12 +5277,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/votes",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"votes"
-									]
+									"host": ["{{url}}"],
+									"path": ["votes"]
 								}
 							},
 							"response": []
@@ -5947,13 +5313,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/votes/{{id_votes}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"votes",
-										"{{id_votes}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["votes", "{{id_votes}}"]
 								}
 							},
 							"response": []
@@ -5979,13 +5340,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/votes/{{id_votes}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"votes",
-										"{{id_votes}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["votes", "{{id_votes}}"]
 								}
 							},
 							"response": []
@@ -6028,12 +5384,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/votetables",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"votetables"
-									]
+									"host": ["{{url}}"],
+									"path": ["votetables"]
 								}
 							},
 							"response": []
@@ -6061,13 +5413,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/votetables/{{id_votetables}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"votetables",
-										"{{id_votetables}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["votetables", "{{id_votetables}}"]
 								}
 							},
 							"response": []
@@ -6093,12 +5440,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/votetables",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"votetables"
-									]
+									"host": ["{{url}}"],
+									"path": ["votetables"]
 								}
 							},
 							"response": []
@@ -6133,13 +5476,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/votetables/{{id_votetables}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"votetables",
-										"{{id_votetables}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["votetables", "{{id_votetables}}"]
 								}
 							},
 							"response": []
@@ -6165,13 +5503,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/votetables/{{id_votetables}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"votetables",
-										"{{id_votetables}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["votetables", "{{id_votetables}}"]
 								}
 							},
 							"response": []
@@ -6214,12 +5547,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/expanses",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"expanses"
-									]
+									"host": ["{{url}}"],
+									"path": ["expanses"]
 								}
 							},
 							"response": []
@@ -6247,13 +5576,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/expanses/{{id_expanses}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"expanses",
-										"{{id_expanses}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["expanses", "{{id_expanses}}"]
 								}
 							},
 							"response": []
@@ -6279,12 +5603,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/expanses",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"expanses"
-									]
+									"host": ["{{url}}"],
+									"path": ["expanses"]
 								}
 							},
 							"response": []
@@ -6319,13 +5639,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/expanses/{{id_expanses}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"expanses",
-										"{{id_expanses}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["expanses", "{{id_expanses}}"]
 								}
 							},
 							"response": []
@@ -6351,13 +5666,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/expanses/{{id_expanses}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"expanses",
-										"{{id_expanses}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["expanses", "{{id_expanses}}"]
 								}
 							},
 							"response": []
@@ -6400,12 +5710,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/expansecategories",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"expansecategories"
-									]
+									"host": ["{{url}}"],
+									"path": ["expansecategories"]
 								}
 							},
 							"response": []
@@ -6433,13 +5739,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/expansecategories/{{id_expansecategories}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"expansecategories",
-										"{{id_expansecategories}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["expansecategories", "{{id_expansecategories}}"]
 								}
 							},
 							"response": []
@@ -6465,12 +5766,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/expansecategories",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"expansecategories"
-									]
+									"host": ["{{url}}"],
+									"path": ["expansecategories"]
 								}
 							},
 							"response": []
@@ -6505,13 +5802,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/expansecategories/{{id_expansecategories}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"expansecategories",
-										"{{id_expansecategories}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["expansecategories", "{{id_expansecategories}}"]
 								}
 							},
 							"response": []
@@ -6537,13 +5829,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/expansecategories/{{id_expansecategories}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"expansecategories",
-										"{{id_expansecategories}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["expansecategories", "{{id_expansecategories}}"]
 								}
 							},
 							"response": []
@@ -6586,12 +5873,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/writes",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"writes"
-									]
+									"host": ["{{url}}"],
+									"path": ["writes"]
 								}
 							},
 							"response": []
@@ -6619,13 +5902,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/writes/{{id_writes}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"writes",
-										"{{id_writes}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["writes", "{{id_writes}}"]
 								}
 							},
 							"response": []
@@ -6651,12 +5929,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/writes",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"writes"
-									]
+									"host": ["{{url}}"],
+									"path": ["writes"]
 								}
 							},
 							"response": []
@@ -6691,13 +5965,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/writes/{{id_writes}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"writes",
-										"{{id_writes}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["writes", "{{id_writes}}"]
 								}
 							},
 							"response": []
@@ -6723,13 +5992,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/writes/{{id_writes}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"writes",
-										"{{id_writes}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["writes", "{{id_writes}}"]
 								}
 							},
 							"response": []
@@ -6772,12 +6036,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/voteoptions",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"voteoptions"
-									]
+									"host": ["{{url}}"],
+									"path": ["voteoptions"]
 								}
 							},
 							"response": []
@@ -6805,13 +6065,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/voteoptions/{{id_voteoptions}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"voteoptions",
-										"{{id_voteoptions}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["voteoptions", "{{id_voteoptions}}"]
 								}
 							},
 							"response": []
@@ -6837,12 +6092,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/voteoptions",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"voteoptions"
-									]
+									"host": ["{{url}}"],
+									"path": ["voteoptions"]
 								}
 							},
 							"response": []
@@ -6877,13 +6128,8 @@
 								},
 								"url": {
 									"raw": "{{url}}/voteoptions/{{id_voteoptions}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"voteoptions",
-										"{{id_voteoptions}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["voteoptions", "{{id_voteoptions}}"]
 								}
 							},
 							"response": []
@@ -6909,13 +6155,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{url}}/voteoptions/{{id_voteoptions}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"voteoptions",
-										"{{id_voteoptions}}"
-									]
+									"host": ["{{url}}"],
+									"path": ["voteoptions", "{{id_voteoptions}}"]
 								}
 							},
 							"response": []
@@ -6960,12 +6201,8 @@
 						},
 						"url": {
 							"raw": "{{url}}/login",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"login"
-							]
+							"host": ["{{url}}"],
+							"path": ["login"]
 						}
 					},
 					"response": []
@@ -7067,12 +6304,8 @@
 						},
 						"url": {
 							"raw": "{{url}}/register",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"register"
-							]
+							"host": ["{{url}}"],
+							"path": ["register"]
 						}
 					},
 					"response": []
@@ -7087,14 +6320,8 @@
 				"url": {
 					"raw": "http://api.odm.ovh/hello",
 					"protocol": "http",
-					"host": [
-						"api",
-						"odm",
-						"ovh"
-					],
-					"path": [
-						"hello"
-					]
+					"host": ["api", "odm", "ovh"],
+					"path": ["hello"]
 				}
 			},
 			"response": []
