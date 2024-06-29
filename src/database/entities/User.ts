@@ -38,7 +38,7 @@ export class User {
 	@Column({ nullable: true })
 	account_status: string;
 
-	@Column("simple-array")
+	@Column("simple-array", { nullable: true })
 	permissions: string[];
 
 	@Column({ nullable: true })
